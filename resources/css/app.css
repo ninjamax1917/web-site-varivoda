@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+/* Use class-based dark mode in Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Hide [x-cloak] elements until Alpine initializes to avoid UI flicker */
+[x-cloak] { display: none !important; }
+
+/* Smooth theme switch: enable short color transitions only during toggle */
+@media (prefers-reduced-motion: no-preference) {
+	.theme-transition,
+	.theme-transition * {
+		transition: background-color .2s ease, color .2s ease, border-color .2s ease,
+								fill .2s ease, stroke .2s ease;
+	}
+}
