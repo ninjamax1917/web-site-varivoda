@@ -18,3 +18,4 @@ vendor/bin/sail php artisan route:list
 # CRUD
 
 47:44
+
