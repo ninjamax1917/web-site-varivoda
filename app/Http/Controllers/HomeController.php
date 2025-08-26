@@ -8,6 +8,15 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $services = [
+            'Электромонтажные работы',
+            'Видеонаблюдение',
+            'Сети | Wifi | Связь',
+            'Противопожарная автоматика',
+            'Проектирование',
+            'Охранная сигнализация',
+        ];
+
+        return view('home', compact('services'));
     }
 }
