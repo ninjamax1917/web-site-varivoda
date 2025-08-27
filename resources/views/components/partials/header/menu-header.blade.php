@@ -5,7 +5,7 @@
 
         <div x-data="{ open: false }" class="relative">
             <button @click="open = !open"
-                class="rounded-md px-3 py-2 text-lg font-medium text-gray-800 dark:text-white hover:text-blue-800 dark:hover:text-blue-500 flex items-center">
+                class="rounded-md px-3 py-2 text-lg font-medium text-gray-800 dark:text-white hover:text-blue-800 dark:hover:text-blue-500 flex items-center cursor-pointer">
                 Услуги
                 <svg :class="{
                     'transform transition-transform duration-500 rotate-360': open,
