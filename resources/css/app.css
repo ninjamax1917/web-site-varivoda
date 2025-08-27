@@ -1,5 +1,11 @@
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+@import "./swiper.css";
 @import "tailwindcss";
 @plugin "daisyui";
+
+
 /* Use class-based dark mode in Tailwind v4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -15,7 +21,4 @@
 	}
 }
 
-/* Стрелка dropdown-menu */
-.rotate-360 {
-    transform: rotate(540deg);
-}
+

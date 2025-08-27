@@ -20,3 +20,7 @@ vendor/bin/sail npm install -D @tailwindcss/forms
 -   ./vendor/bin/sail npm install autoprefixer --save-dev
 -   ./vendor/bin/sail npm install tailwindcss --save-dev
 -   ./vendor/bin/sail npm install -D @tailwindcss/postcss
+
+**Установка swiper.js**
+
+-   ./vendor/bin/sail npm install swiper
