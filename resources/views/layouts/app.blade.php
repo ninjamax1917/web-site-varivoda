@@ -14,7 +14,8 @@
                 const isDark = stored ? stored === 'dark' : prefersDark;
                 document.documentElement.classList.toggle('dark', isDark);
             } catch (e) {
-                /* no-op */ }
+                /* no-op */
+            }
         })();
     </script>
     @vite('resources/css/app.css')
@@ -22,13 +23,13 @@
 </head>
 
 <body class="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-    @include('partials.header')
+    @include('components.header')
 
     <div class="container mx-auto">
         @yield('content')
     </div>
 
-    @include('partials.footer')
+    @include('components.footer')
 
 
 </body>

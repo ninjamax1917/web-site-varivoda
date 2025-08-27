@@ -15,7 +15,5 @@ vendor/bin/sail php artisan make:controller ArticleController --resource --model
 
 vendor/bin/sail php artisan route:list
 
-# CRUD
-
-47:44
-
+class="block px-4 py-2 font-semibold text-gray-900 dark:text-white hover:bg-gray-400/40 dark:hover:bg-gray-600">
+800
