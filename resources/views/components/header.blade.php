@@ -1,5 +1,4 @@
-<nav x-data="{ open: false }"
-    class="relative bg-gray-100 dark:bg-gray-800 border-b-2 border-gray-700/70 dark:border-gray-700 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
+<nav x-data="{ open: false }" class="relative bg-gray-100 dark:bg-gray-800 shadow-lg">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
             <!-- Кнопка мобильного меню -->

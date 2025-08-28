@@ -22,10 +22,10 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<body class="flex flex-col min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     @include('components.header')
 
-    <div class="container mx-auto">
+    <div class="container mx-auto flex-grow">
         @yield('content')
     </div>
 
