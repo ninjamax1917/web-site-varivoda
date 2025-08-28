@@ -1,11 +1,11 @@
-<div x-show="open" x-transition class="sm:hidden">
+<div x-show="open" x-transition class="sm:hidden lg:hidden">
     <div class="space-y-1 px-2 pt-2 pb-3">
         <a href="{{ route('home') }}"
-            class="text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Главная</a>
+            class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Главная</a>
 
         <div x-data="{ subOpen: false }" class="relative">
             <button @click="subOpen = !subOpen"
-                class="w-full text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">
+                class="w-full text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">
                 Услуги
                 <svg :class="{ 'rotate-540': subOpen }"
                     class="inline-block ml-1 h-4 w-4 transition-transform duration-300" fill="none"
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <a href="{{ route('cctv') }}"
+        <a href="{{ route('cctv-city.index') }}"
             class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Камеры
             города</a>
     </div>

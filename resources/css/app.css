@@ -4,6 +4,7 @@
 @import "./swiper.css";
 @import "tailwindcss";
 @plugin "daisyui";
+@import "./button.theme.css";
 
 
 /* Use class-based dark mode in Tailwind v4 */
@@ -21,4 +22,13 @@
 	}
 }
 
+/* Проблемы с планшетами */
+@media (max-width: 928px) {
+    .hide-928 { display: none !important; }
+    .show-928 { display: flex !important; }
+}
+@media (min-width: 929px) {
+    .hide-928 { display: flex !important; }
+    .show-928 { display: none !important; }
+}
 

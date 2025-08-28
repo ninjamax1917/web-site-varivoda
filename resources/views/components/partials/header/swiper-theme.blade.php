@@ -1,4 +1,4 @@
-<div x-data="{ dark: document.documentElement.classList.contains('dark') }" x-init="$watch('dark', v => { try { localStorage.setItem('theme', v ? 'dark' : 'light') } catch (e) {} })" x-cloak>
+<div x-data="{ dark: document.documentElement.classList.contains('dark') }" x-init="$watch('dark', v => { try { localStorage.setItem('theme', v ? 'dark' : 'light') } catch (e) {} })" x-cloak class="hide-928">
     <label class="swap swap-rotate">
         <!-- this hidden checkbox controls the state -->
         <input type="checkbox" id="theme-toggle" name="theme-toggle" x-model="dark"

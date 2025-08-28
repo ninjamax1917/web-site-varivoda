@@ -1,0 +1,13 @@
+.swap-rotate .swap-on,
+.swap-rotate .swap-off {
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.4,2,.6,1);
+    will-change: transform, opacity;
+}
+.swap-rotate input:checked ~ .swap-on,
+.swap-rotate input:not(:checked) ~ .swap-off {
+    transform: rotate(360deg);
+}
+.swap-rotate input:not(:checked) ~ .swap-on,
+.swap-rotate input:checked ~ .swap-off {
+    transform: rotate(0deg);
+}

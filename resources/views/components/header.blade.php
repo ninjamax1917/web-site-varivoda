@@ -12,12 +12,17 @@
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <!-- Здесь можно добавить кнопки профиля/уведомлений -->
-                <x-partials.header.swiper-theme />
+                <span class="mr-8">
+
+                    <x-partials.header.swiper-theme />
+                </span>
+                @guest
+                    <x-partials.header.auth />
+                @endguest
             </div>
         </div>
     </div>
 
     <!-- Мобильное меню -->
     <x-partials.header.mobile-menu />
-
 </nav>
