@@ -31,12 +31,5 @@ class="block px-4 py-2 font-semibold text-gray-900 dark:text-white hover:bg-gray
         </div>
     </section>
 
-    я хочу для секции
-    <figure>
-                    <img src="/images/carousel/cctv/1.jpg" alt="Shoes" />
-                </figure>
-                использовать swiper.js для свайпа изображенийи
-    <figure>
-                    <img src="/images/carousel/cctv/1.jpg" alt="Shoes" />
-                </figure>
-                использовать swiper.js для свайпа изображений
+**Завершить все контейнеры**
+    docker stop $(docker ps -q)

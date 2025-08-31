@@ -9,6 +9,7 @@ use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
@@ -38,6 +39,19 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView('auth.login');
         Fortify::registerView('auth.register');
 
+        // Кастомная аутентификация по email или имени пользователя
+        Fortify::authenticateUsing(function (Request $request) {
+            $login = $request->input('login');
+            $user = \App\Models\User::where('email', $login)
+                ->orWhere('name', $login)
+                ->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
+            }
+            return null;
+        });
+
         app()->singleton(
             \Laravel\Fortify\Contracts\LoginResponse::class,
             function () {
@@ -62,10 +76,8 @@ class FortifyServiceProvider extends ServiceProvider
             }
         );
 
-
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
-
             return Limit::perMinute(5)->by($throttleKey);
         });
 

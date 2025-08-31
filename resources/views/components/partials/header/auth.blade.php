@@ -10,12 +10,37 @@
 
 @endguest
 
+{{-- Аватарка аккаунта в header --}}
 @auth
-<div class="avatar">
-    <div class="ring-primary ring-offset-base-900 w-9 rounded-full ring-2 ring-offset-2">
-        <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+<div class="dropdown dropdown-end lg:dropdown-center">
+    <div tabindex="0" role="button" class="avatar cursor-pointer">
+        <div class="ring-gray-500 w-9 rounded-full ring-1 overflow-hidden">
+            @if(auth()->user()->avatar)
+                <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar" />
+            @else
+                <img src="{{ asset('images/default_avatar.jpg') }}" alt="Avatar" />
+            @endif
+        </div>
     </div>
+    <ul tabindex="0" class="dropdown-content menu bg-gray-100 dark:bg-gray-800 rounded-box z-1 w-52 p-2 shadow-sm mt-2 border border-gray-400 dark:border-gray-700">
+        <li>
+            <a href="{{ route('profile') }}" class="hover:bg-gray-300 dark:hover:bg-gray-700">Профиль</a>
+        </li>
+        <li><a href="{{ route('profile.settings') }}" class="hover:bg-gray-300 dark:hover:bg-gray-700">Настройки</a></li>
+        <hr class="my-1 border-gray-400 dark:border-gray-500">
+        <li>
+            <a href="#" class="hover:bg-gray-300 dark:hover:bg-gray-700"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Выйти
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                @csrf
+            </form>
+        </li>
+    </ul>
 </div>
 @endauth
+
+
 
 

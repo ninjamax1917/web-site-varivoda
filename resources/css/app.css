@@ -38,3 +38,12 @@
   }
 }
 
+/* Автозаполнение фона */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    background-color: #555d6b !important; /* Tailwind bg-gray-800 */
+    color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #555d6b inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+

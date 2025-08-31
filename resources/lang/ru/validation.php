@@ -157,9 +157,9 @@ return [
     'uuid'                   => 'Значение поля :attribute должно быть корректным UUID.',
 
     'attributes' => [
-        'name' => 'имя',
-        'email' => 'электронная почта',
-        'password' => 'пароль',
-        'password_confirmation' => 'подтверждение пароля',
+        'name' => '«имя»',
+        'email' => '«электронная почта»',
+        'password' => '«пароль»',
+        'password_confirmation' => '«подтверждение пароля»',
     ],
 ];
