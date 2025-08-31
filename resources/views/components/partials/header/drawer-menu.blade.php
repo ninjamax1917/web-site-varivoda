@@ -1,8 +1,7 @@
-<div x-show="open" x-transition class="sm:hidden lg:hidden">
+<div class="bg-base-200 min-h-full w-80 p-4">
     <div class="space-y-1 px-2 pt-2 pb-3">
         <a href="{{ route('home') }}"
             class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Главная</a>
-
         <div x-data="{ subOpen: false }" class="relative">
             <button @click="subOpen = !subOpen"
                 class="w-full text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">
@@ -24,9 +23,7 @@
                 @endisset
             </div>
         </div>
-
         <a href="{{ route('cctv-city.index') }}"
-            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Камеры
-            города</a>
+            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Камеры города</a>
     </div>
 </div>

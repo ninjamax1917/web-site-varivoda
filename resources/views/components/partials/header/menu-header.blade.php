@@ -1,4 +1,4 @@
-<div class="hidden sm:ml-15 sm:flex items-center w-full">
+<div class="hidden md:ml-15 md:flex items-center w-full">
     <div class="flex space-x-4 flex-shrink-0">
         <a href="{{ route('home') }}" aria-current="page"
             class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:text-blue-800 dark:hover:text-blue-500">Главная</a>
@@ -33,3 +33,5 @@
             города</a>
     </div>
 </div>
+
+
