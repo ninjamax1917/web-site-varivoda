@@ -7,7 +7,7 @@
         <p>Камеры города</p>
     </div>
 
-
+    <video id="video" controls autoplay class="rounded shadow-lg w-full max-w-2xl bg-black"></video>
 
     {{-- Видеоплеер --}}
     @vite('resources/js/player-hls.js')
