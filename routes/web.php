@@ -24,7 +24,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
 
+    Route::post('/profile/avatar/upload', [ProfileController::class, 'update'])->name('profile.avatar.upload');
+
     Route::get('/profile/settings', [ProfileController::class, 'settings'])->name('profile.settings');
+
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.delete');
 });
 
 Route::get('/home', function () {

@@ -1,10 +1,10 @@
-<div class="bg-base-200 min-h-full w-80 p-4">
+<div class="select-none fixed top-0 left-0 bg-gray-200 dark:bg-gray-800 dark:text-gray-100 min-h-full w-80 p-4 z-50">
     <div class="space-y-1 px-2 pt-2 pb-3">
         <a href="{{ route('home') }}"
-            class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Главная</a>
+            class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500">Главная</a>
         <div x-data="{ subOpen: false }" class="relative">
             <button @click="subOpen = !subOpen"
-                class="w-full text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">
+                class="w-full text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500">
                 Услуги
                 <svg :class="{ 'rotate-540': subOpen }"
                     class="inline-block ml-1 h-4 w-4 transition-transform duration-300" fill="none"
@@ -16,7 +16,7 @@
                 @isset($services)
                     @foreach ($services as $service)
                         <a href="{{ route('service.show', $service['slug']) }}"
-                            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/10 hover:text-blue-500">
+                            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-white/10 hover:text-blue-500">
                             {{ $service['name'] }}
                         </a>
                     @endforeach
@@ -24,6 +24,7 @@
             </div>
         </div>
         <a href="{{ route('cctv-city.index') }}"
-            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Камеры города</a>
+            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Камеры
+            города</a>
     </div>
 </div>

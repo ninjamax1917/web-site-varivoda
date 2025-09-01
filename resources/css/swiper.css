@@ -12,3 +12,18 @@
     object-fit: cover;
     border-radius: 0.5rem;
 }
+
+.card,
+.swiper,
+.swiper-slide,
+.swiper-slide img {
+    z-index: 0 !important;
+    position: relative;
+}
+
+.swiper-button-next,
+.swiper-button-prev,
+.swiper-pagination {
+    z-index: 10 !important;
+    position: absolute;
+}

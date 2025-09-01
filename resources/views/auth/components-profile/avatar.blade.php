@@ -4,7 +4,7 @@
             <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar"
                 class="object-cover w-full h-full" />
         @else
-            <img src="{{ asset('images/default_avatar.jpg') }}" alt="Avatar" class="object-cover w-full h-full" />
+            <img src="{{ asset('images/default_avatar.gif') }}" alt="Avatar" class="object-cover w-full h-full" />
         @endif
     </div>
 </div>

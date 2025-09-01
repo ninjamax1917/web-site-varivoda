@@ -1,0 +1,9 @@
+logLevel: info
+
+hls: yes
+webrtc: yes
+rtsp: yes
+
+paths:
+  mycam:
+    source: rtsp://userweb:2547147Max@10.10.0.221:554/1/1

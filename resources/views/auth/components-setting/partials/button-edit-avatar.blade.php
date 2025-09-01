@@ -1,3 +1,4 @@
+{{-- filepath: resources/views/auth/components-setting/partials/button-edit-avatar.blade.php --}}
 <div class="absolute bottom-8 right-4 z-10">
     <div class="dropdown dropdown-end lg:dropdown-center">
         <label tabindex="0"
@@ -12,25 +13,29 @@
         <ul tabindex="0"
             class="dropdown-content menu bg-gray-100 dark:bg-gray-800 rounded-box z-1 w-52 p-1 shadow-sm mt-2 border border-gray-400 dark:border-gray-700">
             <li>
-                <label for="avatar-upload" class="cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700">Загрузить</label>
+                <label for="avatar-upload" class="cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700">
+                    Загрузить</label>
             </li>
             @if (auth()->user()->avatar)
+                <hr class="border-gray-300 dark:border-gray-700">
                 <li>
-                    <form id="avatar-delete-form" action="{{ route('profile.avatar.delete') }}" method="POST">
+                    <a href="#"
+                        onclick="event.preventDefault(); document.getElementById('avatar-delete-form').submit();"
+                        class="block w-full text-left px-3 py-1 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">Удалить
+                    </a>
+                    <form id="avatar-delete-form" action="{{ route('profile.avatar.delete') }}" method="POST"
+                        class="hidden">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"
-                            class="w-full text-left hover:bg-gray-300 dark:hover:bg-gray-700">Удалить</button>
                     </form>
                 </li>
             @endif
         </ul>
-        <form id="avatar-upload-form" action="{{ route('profile.update') }}" method="POST"
+        <form id="avatar-upload-form" action="{{ route('profile.avatar.upload') }}" method="POST"
             enctype="multipart/form-data" class="hidden">
             @csrf
-            @method('PUT')
-            <input type="file" id="avatar-upload" name="avatar" accept="image/*" class="hidden"
-                onchange="this.form.submit()">
+            <input type="file" id="avatar-upload" name="avatar" accept="image/*"
+                onchange="document.getElementById('avatar-upload-form').submit();">
         </form>
     </div>
 </div>
