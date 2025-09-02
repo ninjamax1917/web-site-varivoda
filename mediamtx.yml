@@ -1,9 +1,7 @@
 logLevel: info
-
-hls: yes
-webrtc: yes
-rtsp: yes
-
+hls: true
+webrtc: true
+rtsp: true
 paths:
-  mycam:
-    source: rtsp://userweb:2547147Max@10.10.0.221:554/1/1
+  cam12:
+    source: 'rtsp://user_web77:2547147Max@185.29.54.63:777/1/1'

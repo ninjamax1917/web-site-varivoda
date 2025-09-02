@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\CctvCityController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StreamingController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -19,7 +19,7 @@ Route::get('/security-alarm', [PagesController::class, 'securityAlarm'])->name('
 Route::get('/services/{service}', [PagesController::class, 'showService'])->name('service.show');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('cctv-city', CctvCityController::class)->except(['show']);
+    Route::resource('cctv-city', StreamingController::class)->except(['show']);
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
@@ -33,4 +33,12 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home', function () {
     return redirect()->route('profile');
+});
+
+// Маршруты для администратора
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/cameras/create', [AdminController::class, 'create'])->name('admin.cameras.create');
+    Route::post('/admin/cameras', [AdminController::class, 'store'])->name('admin.cameras.store');
+    Route::delete('/admin/cameras/{camera}', [AdminController::class, 'destroy'])->name('admin.cameras.destroy');
 });

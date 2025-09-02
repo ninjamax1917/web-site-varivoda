@@ -26,7 +26,6 @@
                 <div class="hidden md:block border-l border-gray-300 dark:border-gray-700 mx-8 self-stretch"></div>
                 <!-- Правая колонка: для других данных -->
                 <div class="flex flex-col justify-center md:w-3/5 w-full">
-                    <!-- Здесь добавьте любые другие данные или форму -->
                     <div class="text-gray-500 text-center md:text-left">
                         <div role="alert" class="alert alert-info">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -36,6 +35,8 @@
                             </svg>
                             <span>У вас пока нет добавленных устройств.</span>
                         </div>
+                        {{-- Админ-панель только для admin --}}
+                        @include('auth.components-admin-panel.admin-panel')
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -88,6 +89,7 @@ class ProfileController extends Controller
     // Новый метод для удаления аккаунта
     public function destroy(Request $request)
     {
+        /** @var \App\Models\User $user */
         $user = auth()->user();
         auth()->logout();
         $user->delete();

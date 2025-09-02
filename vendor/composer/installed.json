@@ -10111,7 +10111,6 @@
         "sebastian/version",
         "staabm/side-effects-detector",
         "symfony/polyfill-php81",
-        "symfony/yaml",
         "theseer/tokenizer"
     ]
 }
