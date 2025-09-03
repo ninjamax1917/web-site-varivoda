@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-0jo95vqx.css",
+    "file": "assets/app-DuUp3lDt.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "names": [
@@ -8,9 +8,24 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CYa0w-rw.js",
+    "file": "assets/app-CkyzYoNU.js",
     "name": "app",
     "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/webrtc-client.js"
+    ]
+  },
+  "resources/js/modal-stream.js": {
+    "file": "assets/modal-stream-BE9H3oip.js",
+    "name": "modal-stream",
+    "src": "resources/js/modal-stream.js",
+    "isEntry": true
+  },
+  "resources/js/webrtc-client.js": {
+    "file": "assets/webrtc-client-BAbKTQFq.js",
+    "name": "webrtc-client",
+    "src": "resources/js/webrtc-client.js",
     "isEntry": true
   }
 }

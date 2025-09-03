@@ -3,8 +3,7 @@
 @section('title', 'Камеры города')
 
 @section('content')
-    <pre>{{ var_export($statuses, true) }}</pre>
-    <div class="text-center text-3xl font-bold lg py-30">
+    <div class="text-center text-2xl font-semibold text-gray-900 dark:text-gray-200 lg py-15">
         <p>Камеры нашего города</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -13,15 +12,13 @@
                 'index' => $camera->id,
                 'name' => $camera->name,
                 'stream_path' => "cam{$camera->id}",
+                'whep_url' => $camera->signedWhepUrl(300, auth()->id()),
+                'hls_url' => $camera->signedHlsUrl(300, auth()->id()),
+                'is_online' => (bool) ($statuses["cam{$camera->id}"] ?? false),
             ])
-            @php $status = $statuses["cam{$camera->id}"] ?? false; @endphp
-            @if ($status)
-                <span class="text-green-600 font-bold">Онлайн</span>
-            @else
-                <span class="text-red-600 font-bold">Оффлайн</span>
-            @endif
         @endforeach
     </div>
     @vite('resources/js/webrtc-client.js')
     @vite('resources/js/modal-stream.js')
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@^1.5.0/dist/hls.min.js"></script>
 @endsection

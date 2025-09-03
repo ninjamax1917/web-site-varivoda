@@ -6,6 +6,13 @@
     <div class="max-w-5xl mx-auto py-10">
         <h1 class="text-3xl font-bold mb-8 text-center">Админ панель</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {{-- Панель мониторинга пользователей --}}
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Мониторинг пользователей</h2>
+                <p class="mb-4 text-gray-600 dark:text-gray-300">Смотреть, кто и сколько времени смотрит трансляции, и
+                    управлять доступом.</p>
+                <a href="{{ route('auth.users.index') }}" class="btn btn-secondary">Открыть мониторинг</a>
+            </div>
             {{-- Форма добавления камеры --}}
             <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow">
                 <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Добавить камеру</h2>

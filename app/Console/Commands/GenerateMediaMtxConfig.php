@@ -30,22 +30,76 @@ class GenerateMediaMtxConfig extends Command
         $config['hls'] = $config['hls'] ?? true;
         $config['webrtc'] = $config['webrtc'] ?? true;
         $config['rtsp'] = $config['rtsp'] ?? true;
+        $config['api'] = $config['api'] ?? true;
+        $config['apiAddress'] = $config['apiAddress'] ?? '0.0.0.0:9997';
+
+        // Разрешённый Origin для HLS/WebRTC
+        $allowOrigin = env('MEDIAMTX_ALLOW_ORIGIN', '*');
+        if (!isset($config['hlsAllowOrigin'])) {
+            $config['hlsAllowOrigin'] = $allowOrigin;
+        }
+        if (!isset($config['webrtcAllowOrigin'])) {
+            $config['webrtcAllowOrigin'] = $allowOrigin;
+        }
+
+        // HTTP-аутентификация через наш вебхук
+        $authUrl = env('MEDIAMTX_AUTH_URL');
+        if (empty($authUrl)) {
+            $appUrl = rtrim((string) (config('app.url') ?? 'http://localhost'), '/');
+            $authUrl = $appUrl . '/api/mediamtx/auth';
+        }
+        if (!isset($config['authMethod'])) {
+            $config['authMethod'] = 'http';
+        }
+        if (!isset($config['authHTTPAddress'])) {
+            $config['authHTTPAddress'] = $authUrl;
+        }
+        if (!isset($config['authHTTPExclude'])) {
+            $config['authHTTPExclude'] = [
+                ['action' => 'api'],
+                ['action' => 'metrics'],
+                ['action' => 'pprof'],
+            ];
+        }
+
+        // rtspAnyPortEnable отсутствует в вашей версии MediaMTX — не используем
+
+        // Явные IP для WebRTC ICE (через env CSV, например "10.10.0.141,203.0.113.10")
+        $webrtcIpsCsv = (string) env('MEDIAMTX_WEBRTC_IPS', '');
+        if (!empty($webrtcIpsCsv)) {
+            $ips = array_values(array_filter(array_map('trim', explode(',', $webrtcIpsCsv))));
+            if (!empty($ips)) {
+                $config['webrtcIPs'] = $ips;
+            }
+        }
 
         // Сохраняем auth и api, если уже есть, иначе не навязываем
         // $config['authMethod'] и $config['authInternalUsers'] трогаем только если заданы ранее
 
-        // 3) Пересобрать раздел paths строго из базы (без мержа со старыми ключами)
-        $newPaths = [];
+        // 3) Пересобрать раздел paths: сохраняем defaults в paths.all, камеры берём из БД
+        $paths = [];
+
+        // Сохраняем существующие defaults (paths.all), если есть
+        $existingAll = $config['paths']['all'] ?? null;
+        if (is_array($existingAll)) {
+            $paths['all'] = $existingAll;
+        } else {
+            $paths['all'] = [
+                // Глобальные дефолты для всех путей
+                'sourceProtocol' => 'tcp',
+            ];
+        }
+
         foreach ($cameras as $camera) {
             // Пропустим камеры без RTSP-URL
             if (empty($camera->rtsp_url)) {
                 continue;
             }
-            $newPaths["cam{$camera->id}"] = [
+            $paths["cam{$camera->id}"] = [
                 'source' => $camera->rtsp_url,
             ];
         }
-        $config['paths'] = $newPaths;
+        $config['paths'] = $paths;
 
         // 4) Сериализация YAML (с нормализацией)
         $yaml = Yaml::dump($config, 4, 2);

@@ -8,18 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
             openBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 modal.classList.remove('hidden');
-                startWebRTC(index);
+                (window.startWebRTC || function(){ })(index);
             });
 
             closeBtn.addEventListener('click', () => {
                 modal.classList.add('hidden');
-                stopWebRTC(index);
+                (window.stopWebRTC || function(){ })(index);
             });
 
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.classList.add('hidden');
-                    stopWebRTC(index);
+                    (window.stopWebRTC || function(){ })(index);
                 }
             });
         }

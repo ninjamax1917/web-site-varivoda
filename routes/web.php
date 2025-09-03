@@ -6,6 +6,9 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StreamingController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MediaMtxAuthController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\AdminUserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -41,4 +44,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/cameras/create', [AdminController::class, 'create'])->name('admin.cameras.create');
     Route::post('/admin/cameras', [AdminController::class, 'store'])->name('admin.cameras.store');
     Route::delete('/admin/cameras/{camera}', [AdminController::class, 'destroy'])->name('admin.cameras.destroy');
+
+    // Пользователи: список и блокировка трансляций
+    Route::get('/auth/users', [AdminUserController::class, 'index'])->name('auth.users.index');
+    Route::post('/auth/users/{user}/toggle', [AdminUserController::class, 'toggle'])->name('auth.users.toggle');
 });
+
+// MediaMTX Control API auth webhook (HTTP-based auth) — публичный маршрут без CSRF
+Route::post('/api/mediamtx/auth', [MediaMtxAuthController::class, '__invoke'])
+    ->withoutMiddleware([VerifyCsrfToken::class]);

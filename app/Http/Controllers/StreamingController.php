@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Camera;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\Models\ViewSession;
 
 class StreamingController extends Controller
 {
@@ -67,6 +68,35 @@ class StreamingController extends Controller
             Log::warning('mediamtx: no json response from any host');
         }
 
-        return view('streaming.cctv_city', compact('cameras', 'statuses'));
+        // Соберём статистику просмотров по камерам
+        $now = now();
+        $activeWindow = (int) env('VIEWERS_ACTIVE_WINDOW', 45); // секунд
+        $activeWindow = max(10, min($activeWindow, 300)); // гвардrails
+        $activeThreshold = $now->copy()->subSeconds($activeWindow);
+
+        $active = ViewSession::selectRaw('camera_id, COUNT(DISTINCT user_id) as cnt')
+            ->where('last_seen_at', '>=', $activeThreshold)
+            ->groupBy('camera_id')
+            ->pluck('cnt', 'camera_id');
+
+        $today = ViewSession::selectRaw('camera_id, COUNT(*) as cnt')
+            ->whereDate('started_at', $now->toDateString())
+            ->groupBy('camera_id')
+            ->pluck('cnt', 'camera_id');
+
+        $total = ViewSession::selectRaw('camera_id, COUNT(*) as cnt')
+            ->groupBy('camera_id')
+            ->pluck('cnt', 'camera_id');
+
+        $viewStats = [];
+        foreach ($cameras as $cam) {
+            $viewStats[$cam->id] = [
+                'now' => (int) ($active[$cam->id] ?? 0),
+                'today' => (int) ($today[$cam->id] ?? 0),
+                'total' => (int) ($total[$cam->id] ?? 0),
+            ];
+        }
+
+        return view('streaming.cctv_city', compact('cameras', 'statuses', 'viewStats'));
     }
 }
