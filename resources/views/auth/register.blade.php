@@ -43,6 +43,12 @@
                         <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="flex items-start gap-2">
+                    <input type="checkbox" id="privacy_accepted" name="privacy_accepted" required class="mt-1" />
+                    <label for="privacy_accepted" class="text-sm text-gray-700 dark:text-gray-300">Я принимаю <a
+                            href="{{ route('policy') }}" class="underline text-blue-600 dark:text-blue-300">Политику
+                            конфиденциальности</a></label>
+                </div>
                 <button type="submit"
                     class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition">
                     Зарегистрироваться

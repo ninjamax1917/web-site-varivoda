@@ -1,8 +1,9 @@
-<div class="select-none fixed top-0 left-0 bg-gray-200 dark:bg-gray-800 dark:text-gray-100 min-h-full w-80 p-4 z-50">
-    <div class="space-y-1 px-2 pt-2 pb-3">
+<div
+    class="select-none fixed top-0 left-0 bg-gray-200 dark:bg-gray-800 dark:text-gray-100 min-h-full w-80 p-4 z-50 flex flex-col">
+    <div class="space-y-1 px-2 pt-2 pb-3 flex-1 flex flex-col">
         <a href="{{ route('home') }}"
             class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500">Главная</a>
-        <div x-data="{ subOpen: false }" class="relative">
+        <div x-data="{ subOpen: true }" class="relative">
             <button @click="subOpen = !subOpen"
                 class="w-full text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500">
                 Услуги
@@ -26,5 +27,38 @@
         <a href="{{ route('cctv-city.index') }}"
             class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Камеры
             города</a>
+
+        @guest
+            <a href="{{ route('login') }}"
+                class="flex items-center justify-center gap-2 text-center rounded-lg px-3 py-2 text-base font-semibold text-green-700 dark:text-green-300 bg-white dark:bg-gray-700 shadow hover:bg-green-50 dark:hover:bg-gray-600 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-700 dark:text-green-300" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
+                </svg>
+                Вход
+            </a>
+            <a href="{{ route('register') }}"
+                class="flex items-center justify-center gap-2 text-center rounded-lg px-3 py-2 text-base font-semibold text-blue-700 dark:text-blue-200 bg-white dark:bg-gray-700 shadow hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-user-pen-icon lucide-user-pen">
+                    <path d="M11.5 15H7a4 4 0 0 0-4 4v2" />
+                    <path
+                        d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
+                    <circle cx="10" cy="7" r="4" />
+                </svg>
+                Регистрация
+            </a>
+        @endguest
+
+        <div class="pt-4 mt-10">
+            @include('components.partials.header.swiper-theme-mobile')
+        </div>
+        <div class="pt-4 mt-auto">
+            <a href="{{ route('policy') }}"
+                class="text-center block rounded-md text-sm px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Политика
+                конфиденциальности</a>
+        </div>
     </div>
 </div>

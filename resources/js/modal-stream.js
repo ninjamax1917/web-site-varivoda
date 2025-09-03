@@ -24,4 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // Гостям показываем модалку-требование авторизации
+    document.querySelectorAll('[id^="open-auth-modal-btn-"]').forEach(btn => {
+        const index = btn.id.replace('open-auth-modal-btn-', '');
+        const modal = document.getElementById(`auth-required-modal-${index}`);
+        if (!modal) return;
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.remove('hidden');
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.add('hidden');
+        });
+        modal.querySelectorAll('[data-close-auth]').forEach(close => {
+            close.addEventListener('click', () => modal.classList.add('hidden'));
+        });
+    });
 });

@@ -2,7 +2,7 @@
     <div class="min-h-full grid place-items-center p-4">
         <div
             class="relative w-full max-w-3xl rounded-2xl border border-black/10 dark:border-white/10 bg-white/90 dark:bg-gray-900/90 shadow-2xl">
-            <div class="flex items-center justify-between px-4 py-3 border-b border-black/10 dark:border-white/10">
+            <div class="flex items-center justify-between px-4 py-1 border-b border-black/10 dark:border-white/10">
                 <div class="flex items-center gap-3">
                     @if (!empty($is_online))
                         <span
@@ -17,7 +17,7 @@
                             Оффлайн
                         </span>
                     @endif
-                    <h2 class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $name }}</h2>
+                    <h2 class="text-sm font-semibold text-gray-700 dark:text-gray-300">{{ $name }}</h2>
                 </div>
                 <button id="close-modal-btn-{{ $index }}" aria-label="Закрыть"
                     class="btn btn-sm btn-circle btn-ghost">✕</button>

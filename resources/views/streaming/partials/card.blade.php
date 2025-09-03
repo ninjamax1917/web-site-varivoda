@@ -20,17 +20,24 @@
             </div>
         </div>
         @if (!empty($is_online))
-            <a href="#" id="open-modal-btn-{{ $index }}" data-stream-path="{{ $stream_path }}"
-                data-whep="{{ $whep_url ?? '' }}" data-hls="{{ $hls_url ?? '' }}"
-                class="rounded-lg w-full aspect-video bg-black flex items-center justify-center text-white text-xl font-semibold hover:bg-gray-800 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-youtube-icon lucide-youtube">
-                    <path
-                        d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-                    <path d="m10 15 5-3-5-3z" />
-                </svg>
-            </a>
+            @auth
+                <a href="#" id="open-modal-btn-{{ $index }}" data-stream-path="{{ $stream_path }}"
+                    data-whep="{{ $whep_url ?? '' }}" data-hls="{{ $hls_url ?? '' }}"
+                    class="rounded-lg w-full aspect-video bg-black flex items-center justify-center text-white text-xl font-semibold hover:bg-gray-800 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-youtube-icon lucide-youtube">
+                        <path
+                            d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+                        <path d="m10 15 5-3-5-3z" />
+                    </svg>
+                </a>
+            @else
+                <button type="button" id="open-auth-modal-btn-{{ $index }}"
+                    class="rounded-lg w-full aspect-video bg-black/80 flex items-center justify-center text-white text-sm font-medium hover:bg-black/70 transition">
+                    Для просмотра необходима авторизация
+                </button>
+            @endauth
         @else
             <div
                 class="rounded-lg w-full aspect-video bg-black flex items-center justify-center text-white text-sm font-medium cursor-not-allowed select-none">
@@ -49,3 +56,31 @@
 
 {{-- Модальное окно --}}
 @include('streaming.partials.modal', ['index' => $index])
+
+@guest
+    {{-- Модалка для гостей: требование авторизации --}}
+    <div id="auth-required-modal-{{ $index }}" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+        <div class="relative mx-auto mt-24 w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-xl">
+            <div class="p-5 flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-500" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 9v4" />
+                    <path d="M12 17h.01" />
+                    <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <div class="text-sm text-gray-800 dark:text-gray-200">
+                    <div class="font-semibold mb-1">Требуется авторизация</div>
+                    <div>Для просмотра видеотрансляции необходимо зарегистрироваться на сайте.</div>
+                </div>
+            </div>
+            <div class="px-5 pb-5 flex justify-end gap-2">
+                <a href="{{ route('login') }}" class="px-3 py-1.5 rounded-md bg-blue-600 text-white text-sm">Войти</a>
+                <a href="{{ route('register') }}"
+                    class="px-3 py-1.5 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm">Регистрация</a>
+                <button type="button" data-close-auth="{{ $index }}"
+                    class="px-3 py-1.5 rounded-md text-sm">Закрыть</button>
+            </div>
+        </div>
+    </div>
+@endguest

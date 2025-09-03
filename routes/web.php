@@ -8,9 +8,14 @@ use App\Http\Controllers\StreamingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MediaMtxAuthController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ServiceCardController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Страница политики конфиденциальности
+Route::view('/policy', 'policy')->name('policy');
 
 Route::get('/cctv', [PagesController::class, 'cctv'])->name('cctv');
 Route::get('/electricity', [PagesController::class, 'electricity'])->name('electricity');
@@ -21,8 +26,9 @@ Route::get('/security-alarm', [PagesController::class, 'securityAlarm'])->name('
 
 Route::get('/services/{service}', [PagesController::class, 'showService'])->name('service.show');
 
+Route::resource('cctv-city', StreamingController::class)->except(['show']);
+
 Route::middleware('auth')->group(function () {
-    Route::resource('cctv-city', StreamingController::class)->except(['show']);
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
@@ -48,8 +54,25 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Пользователи: список и блокировка трансляций
     Route::get('/auth/users', [AdminUserController::class, 'index'])->name('auth.users.index');
     Route::post('/auth/users/{user}/toggle', [AdminUserController::class, 'toggle'])->name('auth.users.toggle');
+
+    // Карточки услуг (слайдеры)
+    Route::get('/auth/service-cards', [ServiceCardController::class, 'index'])->name('auth.service_cards.index');
+    Route::get('/auth/service-cards/create', [ServiceCardController::class, 'create'])->name('auth.service_cards.create');
+    Route::post('/auth/service-cards', [ServiceCardController::class, 'store'])->name('auth.service_cards.store');
+    Route::get('/auth/service-cards/{service_card}/edit', [ServiceCardController::class, 'edit'])->name('auth.service_cards.edit');
+    Route::put('/auth/service-cards/{service_card}', [ServiceCardController::class, 'update'])->name('auth.service_cards.update');
+    Route::delete('/auth/service-cards/{service_card}', [ServiceCardController::class, 'destroy'])->name('auth.service_cards.destroy');
 });
 
 // MediaMTX Control API auth webhook (HTTP-based auth) — публичный маршрут без CSRF
 Route::post('/api/mediamtx/auth', [MediaMtxAuthController::class, '__invoke'])
     ->withoutMiddleware([VerifyCsrfToken::class]);
+
+// Клиентский endpoint для отключения cookie (soft-disable: не выходит из аккаунта)
+Route::post('/cookies/disable', function () {
+    // Soft disable: не делаем logout, устанавливаем server-side cookie_consent=deny
+    $deny = cookie('cookie_consent', 'deny', 60 * 24 * 365);
+    // удалить возможную клиентскую куку cookie_consent
+    $forgetConsent = cookie()->forget('cookie_consent');
+    return response()->json(['status' => 'ok'])->withCookie($deny)->withCookie($forgetConsent);
+})->name('cookies.disable');
