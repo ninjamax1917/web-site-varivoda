@@ -1,7 +1,27 @@
+api: true
+apiAddress: '0.0.0.0:9997'
 logLevel: info
 hls: true
+authMethod: internal
+authInternalUsers:
+  -
+    user: any
+    pass: null
+    ips: []
+    permissions:
+      - { action: publish }
+      - { action: read }
+      - { action: playback }
+  -
+    user: admin
+    pass: 2547147Max
+    ips: []
+    permissions:
+      - { action: api }
 webrtc: true
 rtsp: true
 paths:
-  cam12:
+  cam14:
     source: 'rtsp://user_web77:2547147Max@185.29.54.63:777/1/1'
+  cam15:
+    source: 'rtsp://user_web:2963029Max!@185.29.54.47:777/1/1'
