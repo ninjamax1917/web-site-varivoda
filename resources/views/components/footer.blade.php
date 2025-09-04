@@ -1,6 +1,4 @@
-<footer
-    class="relative bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-4 py-8 mt-8
-    before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-blue-400/40 before:via-purple-400/40 before:to-pink-400/40 dark:before:from-blue-600/30 dark:before:via-purple-600/30 dark:before:to-pink-600/30 shadow-inner">
+<footer class="relative bg-gray-100 dark:bg-[#161617] text-gray-700 dark:text-gray-300 px-4 py-8 mt-8 shadow-inner">
     <div class="max-w-4xl mx-auto flex flex-col items-center gap-4">
         <!-- Соцсети по центру -->
         <div class="flex items-center gap-3">

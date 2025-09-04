@@ -1,15 +1,15 @@
 <div class="drawer select-none">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col">
-        <nav x-data="{ open: false }" class="relative bg-gray-100 dark:bg-gray-800 shadow-lg">
+        <nav x-data="{ open: false }" class="relative bg-gray-100 dark:bg-[#161617] shadow-lg">
             <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
                     <!-- Drawer button for mobile -->
-                    <div class="flex-none md:hidden">
+                    <div class="flex-none md:hidden text-[#39393A]">
                         <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                class="inline-block h-6 w-6 stroke-current">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                class="inline-block h-9 w-9 stroke-current">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M4 6h16M4 12h16M4 18h16"></path>
                             </svg>
                         </label>

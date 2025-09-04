@@ -1,11 +1,11 @@
 <div
-    class="select-none fixed top-0 left-0 bg-gray-200 dark:bg-gray-800 dark:text-gray-100 min-h-full w-80 p-4 z-50 flex flex-col">
+    class="select-none fixed top-0 left-0 bg-gray-200 dark:bg-[#232325] dark:text-gray-100 min-h-full w-80 p-4 z-50 flex flex-col">
     <div class="space-y-1 px-2 pt-2 pb-3 flex-1 flex flex-col">
         <a href="{{ route('home') }}"
-            class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500">Главная</a>
+            class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500 transition duration-400">Главная</a>
         <div x-data="{ subOpen: true }" class="relative">
             <button @click="subOpen = !subOpen"
-                class="w-full text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500">
+                class="w-full text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500 transition duration-600">
                 Услуги
                 <svg :class="{ 'rotate-540': subOpen }"
                     class="inline-block ml-1 h-4 w-4 transition-transform duration-300" fill="none"
@@ -17,7 +17,7 @@
                 @isset($services)
                     @foreach ($services as $service)
                         <a href="{{ route('service.show', $service['slug']) }}"
-                            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-white/10 hover:text-blue-500">
+                            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-100 hover:bg-white/10 hover:text-blue-500 transition duration-400">
                             {{ $service['name'] }}
                         </a>
                     @endforeach
@@ -25,12 +25,15 @@
             </div>
         </div>
         <a href="{{ route('cctv-city.index') }}"
-            class="text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Камеры
+            class="mt-4 text-center block rounded-md px-3 py-2 text-base font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500 transition duration-400">Камеры
             города</a>
 
+
+
         @guest
+            <div class="my-6 border-t-1 border-gray-700 rounded-full"></div>
             <a href="{{ route('login') }}"
-                class="flex items-center justify-center gap-2 text-center rounded-lg px-3 py-2 text-base font-semibold text-green-700 dark:text-green-300 bg-white dark:bg-gray-700 shadow hover:bg-green-50 dark:hover:bg-gray-600 transition-all duration-200">
+                class="flex items-center justify-center gap-2 text-center rounded-lg px-3 py-2 text-base font-semibold text-green-700 dark:text-green-300 bg-white dark:bg-gray-700 shadow hover:bg-green-50 dark:hover:bg-gray-600 transition duration-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-700 dark:text-green-300" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -39,7 +42,7 @@
                 Вход
             </a>
             <a href="{{ route('register') }}"
-                class="flex items-center justify-center gap-2 text-center rounded-lg px-3 py-2 text-base font-semibold text-blue-700 dark:text-blue-200 bg-white dark:bg-gray-700 shadow hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-200">
+                class="mt-1 flex items-center justify-center gap-2 text-center rounded-lg px-3 py-2 text-base font-semibold text-blue-700 dark:text-blue-200 bg-white dark:bg-gray-700 shadow hover:bg-blue-50 dark:hover:bg-gray-600 transition-all duration-400">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-user-pen-icon lucide-user-pen">
@@ -57,7 +60,7 @@
         </div>
         <div class="pt-4 mt-auto">
             <a href="{{ route('policy') }}"
-                class="text-center block rounded-md text-sm px-3 py-2 font-medium text-gray-900 dark:text-gray-200 hover:bg-white/5 hover:text-blue-500">Политика
+                class="text-center block rounded-md text-sm px-3 py-2 font-medium text-gray-900 dark:text-gray-400 hover:bg-white/5 hover:text-blue-500 transition duration-400">Политика
                 конфиденциальности</a>
         </div>
     </div>

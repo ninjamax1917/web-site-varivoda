@@ -1,11 +1,11 @@
 <div class="hidden md:ml-15 md:flex items-center w-full">
     <div class="flex space-x-4 flex-shrink-0">
         <a href="{{ route('home') }}" aria-current="page"
-            class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:text-blue-800 dark:hover:text-blue-500">Главная</a>
+            class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-[#A2A2A2] hover:text-blue-800 dark:hover:text-blue-500 transition duration-600">Главная</a>
 
         <div x-data="{ open: false }" class="relative">
             <button @click="open = !open"
-                class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:text-blue-800 dark:hover:text-blue-500 flex items-center cursor-pointer">
+                class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-[#A2A2A2] hover:text-blue-800 dark:hover:text-blue-500 flex items-center cursor-pointer transition duration-600">
                 Услуги
                 <svg :class="{
                     'transform transition-transform duration-500 rotate-540': open,
@@ -16,7 +16,7 @@
                 </svg>
             </button>
             <div x-show="open" @click.away="open = false" x-cloak
-                class="absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 z-50 overflow-hidden"
+                class="absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white dark:bg-[#232325] border border-gray-300 dark:border-gray-600 z-50 overflow-hidden"
                 x-transition>
                 @isset($services)
                     @foreach ($services as $service)
@@ -29,9 +29,7 @@
         </div>
 
         <a href="{{ route('cctv-city.index') }}"
-            class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-white hover:text-blue-800 dark:hover:text-blue-500">Камеры
+            class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-[#A2A2A2] hover:text-blue-800 dark:hover:text-blue-500 transition duration-600">Камеры
             города</a>
     </div>
 </div>
-
-

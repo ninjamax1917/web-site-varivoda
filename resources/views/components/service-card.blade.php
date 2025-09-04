@@ -1,5 +1,5 @@
 @props(['title', 'images' => []])
-<div class="card bg-gray-600 w-96 shadow-sm">
+<div class="card bg-gray-200/70 dark:bg-[#232325]/50 w-96 shadow-lg">
     <div class="swiper">
         <div class="swiper-wrapper">
             @foreach ($images as $img)
@@ -13,7 +13,6 @@
         <div class="swiper-button-prev"></div>
     </div>
     <div class="flex items-center justify-center h-20">
-        <h2 class="text-lg text-center text-gray-200">{{ $title }}</h2>
+        <h2 class="text-lg text-center text-gray-800 dark:text-gray-100">{{ $title }}</h2>
     </div>
-    {{-- Инициализация свайпера на этом компоненте можно делать через общий JS, таргетируя .swiper --}}
 </div>
