@@ -20,7 +20,7 @@
                 x-transition>
                 @isset($services)
                     @foreach ($services as $service)
-                        <x-partials.header.service-menu-item :href="route('service.show', $service['slug'])">
+                        <x-partials.header.service-menu-item :href="route('service.show', $service['slug'])" :icon="$service['icon']">
                             {{ $service['name'] }}
                         </x-partials.header.service-menu-item>
                     @endforeach

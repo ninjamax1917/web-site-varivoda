@@ -1,4 +1,5 @@
-<div class="mt-auto px-2 py-3 border border-gray-300/50 bg-gray-100 dark:bg-gray-700 rounded-lg text-left space-y-3">
+<div
+    class="mt-auto px-2 py-3 border border-gray-300/50 bg-gray-200/30 dark:bg-[#232325]/50 rounded-lg text-left space-y-3">
     <div class="flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="size-6">

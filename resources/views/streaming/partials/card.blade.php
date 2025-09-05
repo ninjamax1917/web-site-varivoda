@@ -1,6 +1,6 @@
 {{-- resources/views/streaming/partials/card.blade.php --}}
 <div class="flex justify-center">
-    <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-2xl p-4 w-[400px] h-[450px] flex flex-col">
+    <div class="bg-gray-200/70 dark:bg-[#232325]/50 rounded-xl shadow-2xl p-4 w-[400px] h-[450px] flex flex-col">
         <div class="mb-4 text-center">
             <div class="flex items-center justify-center gap-3">
                 <span class="text-xl font-bold">{{ $name }}</span>

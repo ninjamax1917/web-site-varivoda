@@ -7,12 +7,12 @@ class ServiceList
     public static function all()
     {
         return [
-            ['name' => 'Электромонтажные работы', 'slug' => 'electricity'],
-            ['name' => 'Видеонаблюдение', 'slug' => 'cctv'],
-            ['name' => 'Сети | Wifi | Связь', 'slug' => 'network'],
-            ['name' => 'Противопожарная автоматика', 'slug' => 'fire-alarm'],
-            ['name' => 'Проектирование', 'slug' => 'project'],
-            ['name' => 'Охранная сигнализация', 'slug' => 'security-alarm'],
+            ['name' => 'Электромонтажные работы', 'slug' => 'electricity', 'icon' => 'bolt'],
+            ['name' => 'Видеонаблюдение', 'slug' => 'cctv', 'icon' => 'camera'],
+            ['name' => 'Сети | Wifi | Связь', 'slug' => 'network', 'icon' => 'wifi'],
+            ['name' => 'Противопожарная автоматика', 'slug' => 'fire-alarm', 'icon' => 'fire'],
+            ['name' => 'Охранная сигнализация', 'slug' => 'security-alarm', 'icon' => 'shield'],
+            ['name' => 'Проектирование', 'slug' => 'project', 'icon' => 'document'],
         ];
     }
 

@@ -1,8 +1,11 @@
 .swiper {
     width: 100%;
-    max-width: 384px; /* соответствует w-96 */
-    height: 100%;    /* выберите нужную высоту */
-    border-radius: 0.5rem;
+    max-width: 384px;
+    height: 100%;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     overflow: hidden;
 }
 
