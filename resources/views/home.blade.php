@@ -11,4 +11,5 @@
             </section>
         </div>
     </div>
+    <x-partials-home.section-2 />
 @endsection
