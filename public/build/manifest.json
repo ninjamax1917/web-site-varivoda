@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-BZr0k0Ny.css",
+    "file": "assets/app-Dvjf-aDn.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "names": [
@@ -8,25 +8,32 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-Cl2noV6V.js",
+    "file": "assets/app-DtjC2r3p.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "resources/js/webrtc-client.js"
+      "resources/js/webrtc-client.js",
+      "resources/js/view-stats.js"
     ],
     "css": [
       "assets/app-BH4JZYC6.css"
     ]
   },
   "resources/js/modal-stream.js": {
-    "file": "assets/modal-stream-BFDhaKbw.js",
+    "file": "assets/modal-stream-CJwqHC8I.js",
     "name": "modal-stream",
     "src": "resources/js/modal-stream.js",
     "isEntry": true
   },
+  "resources/js/view-stats.js": {
+    "file": "assets/view-stats-CvLKQ8AJ.js",
+    "name": "view-stats",
+    "src": "resources/js/view-stats.js",
+    "isEntry": true
+  },
   "resources/js/webrtc-client.js": {
-    "file": "assets/webrtc-client-BAbKTQFq.js",
+    "file": "assets/webrtc-client-ihzVg0km.js",
     "name": "webrtc-client",
     "src": "resources/js/webrtc-client.js",
     "isEntry": true

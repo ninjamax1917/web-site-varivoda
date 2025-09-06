@@ -76,33 +76,7 @@ function tryHls(video, src) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[id^="open-modal-btn-"]').forEach(openBtn => {
-        const index = openBtn.id.replace('open-modal-btn-', '');
-        const closeBtn = document.getElementById(`close-modal-btn-${index}`);
-        const modal = document.getElementById(`modal-${index}`);
-
-        if (openBtn && closeBtn && modal) {
-            openBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.classList.remove('hidden');
-                startWebRTC(index);
-            });
-
-            closeBtn.addEventListener('click', () => {
-                modal.classList.add('hidden');
-                stopWebRTC(index);
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.add('hidden');
-                    stopWebRTC(index);
-                }
-            });
-        }
-    });
-});
+// UI event binding is handled in modal-stream.js to avoid duplicate listeners.
 
 // Экспорт в глобальную область видимости для вызова из других бандлов
 // (например, modal-stream.js), которые собираются отдельными entrypoints

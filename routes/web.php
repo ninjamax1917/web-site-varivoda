@@ -28,6 +28,9 @@ Route::get('/services/{service}', [PagesController::class, 'showService'])->name
 
 Route::resource('cctv-city', StreamingController::class)->except(['show']);
 
+// Live stats JSON endpoint
+Route::get('/api/streaming/stats', [StreamingController::class, 'stats'])->name('streaming.stats');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

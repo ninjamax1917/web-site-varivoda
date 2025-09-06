@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/webrtc-client.js',
                 'resources/js/modal-stream.js',
+                'resources/js/view-stats.js',
             ],
             refresh: true,
         }),

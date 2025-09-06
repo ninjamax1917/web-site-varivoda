@@ -20,5 +20,6 @@
     </div>
     @vite('resources/js/webrtc-client.js')
     @vite('resources/js/modal-stream.js')
+    @vite('resources/js/view-stats.js')
     <script src="https://cdn.jsdelivr.net/npm/hls.js@^1.5.0/dist/hls.min.js"></script>
 @endsection

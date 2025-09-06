@@ -1,0 +1,56 @@
+/* Home page specific styles */
+
+/* Section-1 marquee */
+.s1-marquee { position: relative; overflow: hidden; }
+.s1-narrow { width: 58%; flex: 0 0 58%; /* 33.333% - 30% = ~23.333% */ }
+.s1-narrow { border: 0 solid #51A2FF; /* slate-300 */ border-radius: 3rem; /* rounded-xl */ }
+/* Light mode: явно задать цвет бордера */
+@media (prefers-color-scheme: light) {
+    .s1-narrow {
+		border: none;
+        border-color: #51A2FF; /* slate-300 */
+    }
+}
+
+/* Dark mode: другой цвет бордера */
+@media (prefers-color-scheme: dark) {
+    .s1-narrow {
+		border: none;
+        border-color: #51A2FF; /* slate-600 */
+    }
+}
+.s1-track { display: inline-flex; align-items: center; width: max-content; will-change: transform; animation: s1-scroll 28s linear infinite; gap: 0.5rem; }
+.s1-group { flex: 0 0 auto; display: inline-flex; align-items: center; }
+.s1-group > span { display: inline-flex; align-items: center; white-space: nowrap; padding-right: 0; }
+.s1-sep { display: inline-block !important; width: 0.75rem; height: 0.75rem; vertical-align: -0.125em; margin: 0 0.325rem; color: var(--s1-sep-color, currentColor); }
+@keyframes s1-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .s1-track { animation: none; } }
+
+/* Mobile/Tablet: make marquee field 2x wider */
+@media (max-width: 1024px) {
+	.s1-narrow { width: 58%; flex: 0 0 58%; }
+}
+
+/* Размер и отступы сепаратора */
+.align-separator {
+	margin-top: 6px; 
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+@media (max-width: 1024px) {
+    .align-separator {
+		margin-top: 2px; 
+    display: inline-block;
+        width: 40px;
+        height: 40px;
+    }
+}
+@media (max-width: 640px) {
+    .align-separator {
+		margin-top: 0px; 
+    display: inline-block;
+        width: 25px;
+        height: 25px;
+    }
+}

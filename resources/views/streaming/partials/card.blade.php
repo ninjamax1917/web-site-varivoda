@@ -61,7 +61,7 @@
     {{-- Модалка для гостей: требование авторизации --}}
     <div id="auth-required-modal-{{ $index }}" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-        <div class="relative mx-auto mt-24 w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-xl">
+        <div data-auth-modal-content class="relative mx-auto mt-24 w-full max-w-md rounded-lg bg-white dark:bg-gray-800 shadow-xl">
             <div class="p-5 flex items-start gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-amber-500" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">

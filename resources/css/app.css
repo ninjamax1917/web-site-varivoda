@@ -1,10 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui";
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 @import "./swiper.css";
-@import "tailwindcss";
-@plugin "daisyui";
 @import "./button.theme.css";
+@import "./home-page.css";
 
 
 /* Use class-based dark mode in Tailwind v4 */
@@ -45,4 +46,11 @@ input:-webkit-autofill:focus {
     color: #fff !important;
     -webkit-box-shadow: 0 0 0 1000px #555d6b inset !important;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Жестко убираем переключатель темы на средних экранах */
+@media (max-width: 768px) {
+  .force-hide-md {
+    display: none !important;
+  }
 }

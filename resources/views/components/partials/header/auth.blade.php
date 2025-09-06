@@ -22,7 +22,7 @@
             </div>
         </div>
         <ul tabindex="0"
-            class="dropdown-content menu bg-gray-100 dark:bg-gray-800 rounded-box z-1 w-52 p-2 shadow-sm mt-2 border border-gray-400 dark:border-gray-700">
+            class="dropdown-content menu bg-white dark:bg-[#232325] border border-gray-300 dark:border-gray-600 rounded-box z-1 w-52 p-2 shadow-sm mt-2">
             <li>
                 <a href="{{ route('profile') }}" class="hover:bg-gray-300 dark:hover:bg-gray-700">Профиль</a>
             </li>

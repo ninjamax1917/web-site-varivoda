@@ -99,4 +99,57 @@ class StreamingController extends Controller
 
         return view('streaming.cctv_city', compact('cameras', 'statuses', 'viewStats'));
     }
+
+    // Lightweight JSON endpoint with live view stats
+    public function stats(Request $request)
+    {
+        $idsParam = $request->query('ids');
+        $ids = null;
+        if ($idsParam) {
+            $ids = collect(explode(',', $idsParam))
+                ->map(fn($v) => (int) trim($v))
+                ->filter(fn($v) => $v > 0)
+                ->unique()
+                ->values();
+        }
+
+        $now = now();
+        $activeWindow = (int) env('VIEWERS_ACTIVE_WINDOW', 45); // seconds
+        $activeWindow = max(10, min($activeWindow, 300));
+        $activeThreshold = $now->copy()->subSeconds($activeWindow);
+
+        $activeQuery = ViewSession::selectRaw('camera_id, COUNT(DISTINCT user_id) as cnt')
+            ->where('last_seen_at', '>=', $activeThreshold)
+            ->groupBy('camera_id');
+        $todayQuery = ViewSession::selectRaw('camera_id, COUNT(*) as cnt')
+            ->whereDate('started_at', $now->toDateString())
+            ->groupBy('camera_id');
+        $totalQuery = ViewSession::selectRaw('camera_id, COUNT(*) as cnt')
+            ->groupBy('camera_id');
+
+        if ($ids && $ids->isNotEmpty()) {
+            $activeQuery->whereIn('camera_id', $ids);
+            $todayQuery->whereIn('camera_id', $ids);
+            $totalQuery->whereIn('camera_id', $ids);
+        }
+
+        $active = $activeQuery->pluck('cnt', 'camera_id');
+        $today = $todayQuery->pluck('cnt', 'camera_id');
+        $total = $totalQuery->pluck('cnt', 'camera_id');
+
+        $result = [];
+        $keys = $ids && $ids->isNotEmpty()
+            ? $ids
+            : collect(array_unique(array_merge(array_keys($active->toArray()), array_keys($today->toArray()), array_keys($total->toArray()))));
+
+        foreach ($keys as $camId) {
+            $result[(int) $camId] = [
+                'now' => (int) ($active[$camId] ?? 0),
+                'today' => (int) ($today[$camId] ?? 0),
+                'total' => (int) ($total[$camId] ?? 0),
+            ];
+        }
+
+        return response()->json($result)->header('Cache-Control', 'no-store, max-age=0');
+    }
 }

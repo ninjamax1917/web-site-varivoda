@@ -1,7 +1,7 @@
 <div id="modal-{{ $index }}" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm">
     <div class="min-h-full grid place-items-center p-4">
-        <div
-            class="relative w-full max-w-3xl rounded-2xl border border-black/10 dark:border-white/10 bg-white/90 dark:bg-gray-900/90 shadow-2xl">
+    <div data-modal-content="{{ $index }}"
+            class="relative w-full max-w-3xl rounded-2xl border border-black/10 dark:border-white/10 bg-white/90 dark:bg-[#232325] shadow-2xl">
             <div class="flex items-center justify-between px-4 py-1 border-b border-black/10 dark:border-white/10">
                 <div class="flex items-center gap-3">
                     @if (!empty($is_online))

@@ -18,9 +18,5 @@ rtsp: true
 paths:
   all:
     sourceProtocol: tcp
-  cam8:
+  cam7:
     source: 'rtsp://web77:2547147Max@185.29.54.235:777/7/1'
-  cam9:
-    source: 'rtsp://userweb:2547147Max@10.10.0.221:554/1/1'
-  cam10:
-    source: 'rtsp://userweb:2547147Max@185.29.54.55:554/1/1'
