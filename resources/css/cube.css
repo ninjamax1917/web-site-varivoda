@@ -1,0 +1,97 @@
+/* Styles for the 3D services cube */
+.cube-scene {
+  /* size reduced by ~20% */
+  --cube-size: 224px;
+  /* theme-aware background for faces */
+  --cube-bg: #6B7280; /* gray-500 default (light) */
+  perspective: 1000px;
+  width: var(--cube-size);
+  height: var(--cube-size);
+  /* prevent page scroll on mobile while dragging */
+  touch-action: none;
+  overscroll-behavior: contain;
+  cursor: grab;
+}
+
+@media (max-width: 640px) {
+  .cube-scene {
+    --cube-size: 176px;
+  }
+}
+
+/* dark theme face color */
+.dark .cube-scene {
+  --cube-bg: #111827; /* gray-900 */
+}
+
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.06s linear;
+  touch-action: none;
+}
+
+.cube-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  /* brand edges for the cube */
+  border: 2px solid #51A2FF;
+  text-decoration: none;
+  /* subtle shading */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10) inset,
+              0 6px 18px rgba(0, 0, 0, 0.08);
+  backface-visibility: hidden;
+  user-select: none;
+  touch-action: none;
+
+  /* Face color: gray */
+  background: var(--cube-bg);
+  color: #F3F4F6; /* gray-100 for readability on dark; acceptable on light gray */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cube-scene.dragging {
+  cursor: grabbing;
+}
+
+.cube-face:hover .face-label {
+  transform: scale(1.04);
+}
+
+.face-label {
+  font-weight: 600;
+  line-height: 1.2;
+  transition: transform 0.15s ease;
+}
+
+/* Face placement relative to half cube size */
+.face-front {
+  transform: translateZ(calc(var(--cube-size) / 2));
+}
+.face-back {
+  transform: rotateY(180deg) translateZ(calc(var(--cube-size) / 2));
+}
+.face-right {
+  transform: rotateY(90deg) translateZ(calc(var(--cube-size) / 2));
+}
+.face-left {
+  transform: rotateY(-90deg) translateZ(calc(var(--cube-size) / 2));
+}
+.face-top {
+  transform: rotateX(90deg) translateZ(calc(var(--cube-size) / 2));
+}
+.face-bottom {
+  transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2));
+}

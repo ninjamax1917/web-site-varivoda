@@ -6,6 +6,7 @@
 @import "./swiper.css";
 @import "./button.theme.css";
 @import "./home-page.css";
+@import "./cube.css";
 
 /* Use class-based dark mode in Tailwind v4 */
 @custom-variant dark (&:where(.dark, .dark *));
