@@ -3,15 +3,17 @@ export function cube3d() {
   return {
     angleX: -15,
     angleY: 25,
+  autoSpinX: 0.02, // slow vertical auto-rotation (downwards)
+  autoSpinY: 0.06, // horizontal auto-rotation
     velX: 0,
     velY: 0,
     lastX: 0,
     lastY: 0,
+  pointerType: 'mouse',
     isDown: false,
     isDragging: false,
     dragMoved: false,
     rafId: null,
-    autoSpin: 0.06, // auto-rotation around Y
 
     get cubeStyle() {
       return `transform: rotateX(${this.angleX}deg) rotateY(${this.angleY}deg);`;
@@ -21,7 +23,8 @@ export function cube3d() {
       const scene = document.querySelector('.cube-scene');
       const tick = () => {
         if (!this.isDown) {
-          this.angleY += this.autoSpin;
+          this.angleY += this.autoSpinY;
+          this.angleX += this.autoSpinX;
         } else {
           // momentum
           this.angleX += this.velX;
@@ -36,8 +39,10 @@ export function cube3d() {
       this.rafId = requestAnimationFrame(tick);
     },
 
-  onPointerDown(e) {
+    onPointerDown(e) {
       this.isDown = true;
+      try { e.target.setPointerCapture && e.target.setPointerCapture(e.pointerId); } catch (_) {}
+      this.pointerType = e.pointerType || (e.touches ? 'touch' : 'mouse');
       this.dragMoved = false;
       this.isDragging = false;
       this.lastX = e.clientX;
@@ -49,19 +54,20 @@ export function cube3d() {
     onPointerMove(e) {
       if (!this.isDown) return;
       if (e.cancelable) e.preventDefault();
-      const dx = e.clientX - this.lastX;
-      const dy = e.clientY - this.lastY;
-      // higher threshold to distinguish tap vs drag on mobile
-      if (Math.abs(dx) > 6 || Math.abs(dy) > 6) {
+  const dx = e.clientX - this.lastX;
+  const dy = e.clientY - this.lastY;
+  // slightly lower threshold so drag starts easier on mobile
+  if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
         this.dragMoved = true;
         this.isDragging = true;
       }
       this.lastX = e.clientX;
       this.lastY = e.clientY;
 
-  // Increase vertical sensitivity a bit for mobile feel
-  const sensX = 0.5; // horizontal
-  const sensY = 0.7; // vertical
+  // Sensitivity: stronger vertical for touch
+  const isTouch = this.pointerType === 'touch' || this.pointerType === 'pen';
+  const sensX = isTouch ? 0.6 : 0.5;  // horizontal
+  const sensY = isTouch ? 1.35 : 0.75; // vertical
   this.angleY += dx * sensX;
   this.angleX -= dy * sensY;
 
@@ -71,8 +77,9 @@ export function cube3d() {
       this.velX = -dy * 0.01;
     },
 
-    onPointerUp() {
+    onPointerUp(e) {
   this.isDown = false;
+      try { e && e.target && e.target.releasePointerCapture && e.target.releasePointerCapture(e.pointerId); } catch (_) {}
       setTimeout(() => {
         this.isDragging = false;
       }, 80);

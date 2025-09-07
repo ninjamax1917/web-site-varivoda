@@ -2,8 +2,8 @@
 .cube-scene {
   /* size reduced by ~20% */
   --cube-size: 224px;
-  /* theme-aware background for faces */
-  --cube-bg: #6B7280; /* gray-500 default (light) */
+  /* unified background for faces */
+  --cube-bg: #232325;
   perspective: 1000px;
   width: var(--cube-size);
   height: var(--cube-size);
@@ -20,9 +20,7 @@
 }
 
 /* dark theme face color */
-.dark .cube-scene {
-  --cube-bg: #111827; /* gray-900 */
-}
+.dark .cube-scene { --cube-bg: #232325; }
 
 .cube {
   position: relative;
@@ -43,8 +41,8 @@
   justify-content: center;
   text-align: center;
   padding: 1rem;
-  /* brand edges for the cube */
-  border: 2px solid #51A2FF;
+  /* brand edges for the cube (extra thick) */
+  border: 8px solid #51A2FF;
   text-decoration: none;
   /* subtle shading */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10) inset,

@@ -8,7 +8,7 @@
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 			<!-- Left: About company -->
 			<div class="text-gray-900 dark:text-inherit">
-				<h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">О компании</h2>
+				<h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">О компании</h2>
 				<p class="text-base md:text-lg leading-relaxed mb-4 text-gray-900/80 dark:text-gray-300">
 					Мы проектируем, монтируем и сопровождаем инженерные системы: от
 					электрики и сетей до видеонаблюдения и сигнализации. Работаем «под ключ»,
@@ -26,7 +26,7 @@
 			<div
 				x-data="cube3d()"
 				x-init="init()"
-				class="flex justify-center"
+				class="flex justify-center mt-10 sm:mt-12 md:mt-14 lg:mt-0"
 			>
 				<div
 					class="cube-scene select-none"
@@ -36,7 +36,7 @@
 					@pointercancel.window="onPointerUp()"
 					aria-label="Интерактивный куб с услугами"
 				>
-					<div class="cube" :style="cubeStyle">
+					<div class="cube" :style="cubeStyle" @pointerdown.stop="onPointerDown($event)">
 						@foreach($services as $idx => $service)
 							@php
 								// Позиции 6 граней: front, back, right, left, top, bottom
@@ -49,6 +49,7 @@
 									class="cube-face face-{{$face}}"
 									href="{{ route($routeName) }}"
 									:class="{ 'pointer-events-none': isDragging }"
+									@pointerdown.stop="onPointerDown($event)"
 									@click.prevent="handleClick($event)"
 									title="{{ $service['name'] }}"
 								>
