@@ -1,13 +1,19 @@
-/* Styles for the 3D services cube */
+/* Стили для 3D‑куба услуг
+ * Структура:
+ * - .cube-scene — контейнер перспективы и защита от жестов браузера
+ * - .cube — 3D‑обёртка, вращается через inline‑style из Alpine
+ * - .cube-face + модификаторы .face-* — шесть граней куба
+ * - .cube-drag-hint — ненавязчивая подсказка (перетащите/свайпните)
+ */
 .cube-scene {
-  /* size reduced by ~20% */
+  /* размер куба (уменьшен ~на 20%) */
   --cube-size: 224px;
-  /* unified background for faces */
+  /* фон всех граней */
   --cube-bg: #232325;
   perspective: 1000px;
   width: var(--cube-size);
   height: var(--cube-size);
-  /* prevent page scroll on mobile while dragging */
+  /* блокируем скролл страницы на мобильных при перетаскивании */
   touch-action: none;
   overscroll-behavior: contain;
   cursor: grab;
@@ -19,7 +25,7 @@
   }
 }
 
-/* dark theme face color */
+/* цвет граней в тёмной теме */
 .dark .cube-scene { --cube-bg: #232325; }
 
 .cube {
@@ -41,19 +47,19 @@
   justify-content: center;
   text-align: center;
   padding: 1rem;
-  /* brand edges for the cube (extra thick) */
+  /* фирменные «рёбра» куба (нарочито толстые) */
   border: 8px solid #51A2FF;
   text-decoration: none;
-  /* subtle shading */
+  /* лёгкие тени */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10) inset,
               0 6px 18px rgba(0, 0, 0, 0.08);
   backface-visibility: hidden;
   user-select: none;
   touch-action: none;
 
-  /* Face color: gray */
+  /* цвет граней (серый) */
   background: var(--cube-bg);
-  color: #F3F4F6; /* gray-100 for readability on dark; acceptable on light gray */
+  color: #F3F4F6; /* gray-100 — читаемо в тёмной теме и на светло‑сером */
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
@@ -74,7 +80,7 @@
   transition: transform 0.15s ease;
 }
 
-/* Face placement relative to half cube size */
+/* Расположение граней относительно половины размера куба */
 .face-front {
   transform: translateZ(calc(var(--cube-size) / 2));
 }
@@ -92,4 +98,64 @@
 }
 .face-bottom {
   transform: rotateX(-90deg) translateZ(calc(var(--cube-size) / 2));
+}
+
+/* Подсказка «перетащите/свайпните» под кубом */
+.cube-drag-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem; /* 6px */
+  font-size: 0.8125rem; /* ~13px */
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.7);
+  user-select: none;
+}
+.cube-drag-hint .hint-icon {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  position: relative;
+}
+.cube-drag-hint .hint-icon::before,
+.cube-drag-hint .hint-icon::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid rgba(255, 255, 255, 0.6);
+  border-right: 2px solid rgba(255, 255, 255, 0.6);
+  transform: rotate(45deg);
+}
+.cube-drag-hint .hint-icon::before {
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+.cube-drag-hint .hint-icon::after {
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%) rotate(225deg);
+}
+
+/* Во время активного перетаскивания отключаем анимацию — отзывчивее */
+.cube-scene.dragging .cube {
+  transition: none;
+}
+
+/* Индикатор «360°» — вращающаяся подсказка о свободном повороте */
+@keyframes spin360 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.cube-drag-hint .hint-360 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 9999px;
+  font-size: 11px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.85);
+  animation: spin360 3.5s linear infinite;
 }

@@ -28,7 +28,7 @@
 
 /* Mobile/Tablet: make marquee field 2x wider */
 @media (max-width: 1024px) {
-	.s1-narrow { width: 58%; flex: 0 0 58%; }
+	.s1-narrow { width: 100%; flex: 0 0 100%; }
 }
 
 /* Размер и отступы сепаратора */
@@ -54,3 +54,18 @@
         height: 25px;
     }
 }
+
+/* Перенос строк для flex-контейнера при ширине 1024px */
+@media (max-width: 1024px) {
+  .section-1-flex {
+    flex-wrap: wrap !important;
+  }
+}
+
+/* Только для iPad Pro 1024px */
+@media (width: 1024px) and (orientation: portrait), (width: 1024px) and (orientation: landscape) {
+  .ipad-break {
+    margin-top: 2.6rem !important; /* mt-5 */
+  }
+}
+

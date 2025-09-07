@@ -2,7 +2,7 @@
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col">
         <nav x-data="{ open: false }" class="relative bg-gray-100 dark:bg-[#161617] shadow-lg">
-            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
                     <!-- Drawer button for mobile -->
                     <div class="flex-none md:hidden text-[#39393A]">

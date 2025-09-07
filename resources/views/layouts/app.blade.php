@@ -26,7 +26,7 @@
 <body class="flex flex-col min-h-screen bg-white text-gray-900 dark:bg-[#161617] dark:text-gray-100">
     @include('components.header')
 
-    <div class="container mx-auto flex-grow">
+    <div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8 flex-grow">
         @yield('content')
     </div>
 

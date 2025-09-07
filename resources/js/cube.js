@@ -1,10 +1,22 @@
-// Alpine component for the interactive 3D cube
+// Компонент Alpine для интерактивного 3D‑куба
+// Назначение: состояние поворота, авто‑вращение и перетаскивание указателем,
+// с переходом по клику на грань (если не было перетаскивания).
+// Контракт:
+// - x-data="cube3d()" — инициализация компонента в разметке
+// - геттер cubeStyle — возвращает CSS‑трансформацию для обёртки куба
+// - onPointerDown/Move/Up — жизненный цикл перетаскивания; handleClick — навигация, если не было drag
+// Примечания:
+// - Автовращение останавливается при drag и возобновляется после отпускания
+// - Угол по X ограничен, чтобы не переворачивать куб вверх дном (читабельность подписей)
 export function cube3d() {
   return {
     angleX: -15,
     angleY: 25,
-  autoSpinX: 0.02, // slow vertical auto-rotation (downwards)
-  autoSpinY: 0.06, // horizontal auto-rotation
+    // Скорости авто‑вращения (градусов за кадр).
+    // Было после предыдущего шага: X=0.032, Y=0.096 (увеличение ×1.6)
+    // Ещё раз ускоряем ×1.2: X=0.0384, Y=0.1152
+    autoSpinX: 0.0384, // вертикальная компонента (вниз)
+    autoSpinY: 0.1152, // горизонтальная компонента
     velX: 0,
     velY: 0,
     lastX: 0,
@@ -15,18 +27,21 @@ export function cube3d() {
     dragMoved: false,
     rafId: null,
 
+    // Трансформация куба — минимум логики в шаблоне, всё в компоненте
     get cubeStyle() {
       return `transform: rotateX(${this.angleX}deg) rotateY(${this.angleY}deg);`;
     },
 
     init() {
-      const scene = document.querySelector('.cube-scene');
+      // Запускаем rAF‑цикл для авто‑вращения и инерции
+    const scene = document.querySelector('.cube-scene');
       const tick = () => {
         if (!this.isDown) {
+          // Автовращение, когда пользователь не тянет куб
           this.angleY += this.autoSpinY;
           this.angleX += this.autoSpinX;
         } else {
-          // momentum
+          // Во время перетаскивания — небольшая инерция по скорости указателя
           this.angleX += this.velX;
           this.angleY += this.velY;
           this.velX *= 0.95;
@@ -40,6 +55,7 @@ export function cube3d() {
     },
 
     onPointerDown(e) {
+      // Начало drag: захватываем указатель, сбрасываем флаги, запоминаем координаты
       this.isDown = true;
       try { e.target.setPointerCapture && e.target.setPointerCapture(e.pointerId); } catch (_) {}
       this.pointerType = e.pointerType || (e.touches ? 'touch' : 'mouse');
@@ -52,11 +68,12 @@ export function cube3d() {
     },
 
     onPointerMove(e) {
+      // Обновляем углы при перетаскивании; блокируем скролл (если можно отменить)
       if (!this.isDown) return;
       if (e.cancelable) e.preventDefault();
   const dx = e.clientX - this.lastX;
   const dy = e.clientY - this.lastY;
-  // slightly lower threshold so drag starts easier on mobile
+      // Порог, после которого считаем, что это drag, а не tap
   if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
         this.dragMoved = true;
         this.isDragging = true;
@@ -64,21 +81,24 @@ export function cube3d() {
       this.lastX = e.clientX;
       this.lastY = e.clientY;
 
-  // Sensitivity: stronger vertical for touch
+      // Чувствительность: для touch вертикаль сильнее
   const isTouch = this.pointerType === 'touch' || this.pointerType === 'pen';
   const sensX = isTouch ? 0.6 : 0.5;  // horizontal
   const sensY = isTouch ? 1.35 : 0.75; // vertical
   this.angleY += dx * sensX;
   this.angleX -= dy * sensY;
 
+      // Держим куб в читаемом диапазоне по X (не переворачиваем)
       this.angleX = Math.max(-88, Math.min(88, this.angleX));
 
+      // Текущая «скорость» для лёгкой инерции
       this.velY = dx * 0.01;
       this.velX = -dy * 0.01;
     },
 
     onPointerUp(e) {
-  this.isDown = false;
+      // Конец drag: отпускаем захват, убираем класс, даём ссылкам сработать если не тянули
+      this.isDown = false;
       try { e && e.target && e.target.releasePointerCapture && e.target.releasePointerCapture(e.pointerId); } catch (_) {}
       setTimeout(() => {
         this.isDragging = false;
@@ -88,6 +108,7 @@ export function cube3d() {
     },
 
     handleClick(event) {
+      // Навигация только если не было перетаскивания
       if (this.dragMoved) return;
       const a = event.currentTarget;
       if (a && a.href) {
@@ -97,11 +118,11 @@ export function cube3d() {
   };
 }
 
-// Auto-register on window for inline x-data references
+// Регистрация в window, чтобы x-data мог найти cube3d()
 if (typeof window !== 'undefined') {
   window.cube3d = cube3d;
 
-  // Prevent long-press context menu and text selection on cube faces (mobile)
+  // Запрещаем контекстное меню по долгому тапу внутри сцены
   window.addEventListener('contextmenu', (e) => {
     if (e.target.closest('.cube-scene')) e.preventDefault();
   });
