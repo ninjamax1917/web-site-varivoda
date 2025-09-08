@@ -79,3 +79,9 @@ Route::post('/cookies/disable', function () {
     $forgetConsent = cookie()->forget('cookie_consent');
     return response()->json(['status' => 'ok'])->withCookie($deny)->withCookie($forgetConsent);
 })->name('cookies.disable');
+
+// Сертификаты/лицензии — отдаём PDF через контроллер по нормализованному ключу
+use App\Http\Controllers\CertificatesController;
+Route::get('/certificates/{key}', [CertificatesController::class, 'show'])
+    ->name('certificates.show')
+    ->middleware('signed');
