@@ -8,8 +8,8 @@
 .cube-scene {
   /* размер куба (уменьшен ~на 20%) */
   --cube-size: 224px;
-  /* фон всех граней */
-  --cube-bg: #232325;
+  /* фон всех граней: светлее в светлой теме */
+  --cube-bg: #3a3f46; /* light theme */
   perspective: 1000px;
   width: var(--cube-size);
   height: var(--cube-size);
@@ -25,7 +25,7 @@
   }
 }
 
-/* цвет граней в тёмной теме */
+/* цвет граней в тёмной теме (темнее) */
 .dark .cube-scene { --cube-bg: #232325; }
 
 .cube {
@@ -33,6 +33,7 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.06s linear;
   touch-action: none;
@@ -42,18 +43,25 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  /* Важно: учитываем рамку в габаритах плоскости,
+    иначе каждая грань становится больше на 8px*2 и «разъезжается» */
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 1rem;
-  /* фирменные «рёбра» куба (нарочито толстые) */
-  border: 8px solid #51A2FF;
+  /* фирменные «рёбра» куба (толстая обводка, без внешнего бордера чтобы не было «щелей») */
+  /* Рисуем через внутренний inset-ободок: визуально как border:8px */
   text-decoration: none;
   /* лёгкие тени */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10) inset,
-              0 6px 18px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    inset 0 0 0 8px #51A2FF,
+    0 10px 25px rgba(0, 0, 0, 0.10) inset,
+    0 6px 18px rgba(0, 0, 0, 0.08);
+  /* Скрываем оборотную сторону (и для WebKit) во избежание «просвечивания» */
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   user-select: none;
   touch-action: none;
 
@@ -110,6 +118,35 @@
   color: rgba(255, 255, 255, 0.7);
   user-select: none;
 }
+.cube-drag-hint .hint-desktop { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.cube-drag-hint .hint-touch { display: none; }
+@media (hover: none) and (pointer: coarse) { /* тач-устройства */
+  .cube-drag-hint .hint-desktop { display: none; }
+  .cube-drag-hint .hint-touch { display: inline; }
+}
+/* 360° по умолчанию скрыт, показываем только на тач */
+/* kbd‑иконки (ЛКМ/ПКМ): лучше контраст в светлой теме */
+.cube-drag-hint .kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 2px 6px; border-radius: 4px;
+  border: 1px solid #51A2FF;
+  background: #EEF6FF; /* светлая подложка для светлой темы */
+  color: #1E40AF; /* насыщённый синий текст */
+  font-size: 0.7rem; font-weight: 600; letter-spacing: .02em;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+  animation: kbdPulse 1.8s ease-in-out infinite;
+}
+/* В тёмной теме делаем чуть прозрачнее и светлее текст */
+.dark .cube-drag-hint .kbd {
+  border-color: rgba(81,162,255,0.55);
+  background: rgba(81,162,255,0.12);
+  color: #DCEBFF;
+  box-shadow: 0 1px 2px rgba(0,0,0,.18);
+}
+@keyframes kbdPulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(81,162,255,.35);} 50%{ box-shadow: 0 0 0 6px rgba(81,162,255,0);} }
+
+/* Верстка строк подсказок */
+.hint-line { white-space: nowrap; }
 .cube-drag-hint .hint-icon {
   width: 18px;
   height: 18px;
@@ -146,16 +183,30 @@
 /* Индикатор «360°» — вращающаяся подсказка о свободном повороте */
 @keyframes spin360 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .cube-drag-hint .hint-360 {
-  display: inline-flex;
+  display: none; /* по умолчанию скрыт */
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
   margin-left: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid #51A2FF; /* в светлой теме — фирменный синий */
   border-radius: 9999px;
   font-size: 11px;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.85);
+  color: #1E40AF; /* тёмно‑синий текст, заметен на светлом фоне */
+  background: #EEF6FF; /* светлая подложка для контраста в светлой теме */
   animation: spin360 3.5s linear infinite;
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .cube-drag-hint .hint-360 { display: inline-flex; }
+}
+
+/* Тёмная тема — светлая графика на тёмной подложке */
+.dark .cube-drag-hint .hint-360 {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(35, 35, 37, 0.9);
+}
+
+/* (удалено) стили для svg-иконки мыши */

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0c7e78bbe938dbfeac9aa28c4e11f2ab
+class ComposerStaticInit52ec60bcdc9e191c22764173e569fed8
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -649,6 +649,7 @@ class ComposerStaticInit0c7e78bbe938dbfeac9aa28c4e11f2ab
         'App\\Console\\Commands\\GenerateMediaMtxConfig' => __DIR__ . '/../..' . '/app/Console/Commands/GenerateMediaMtxConfig.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\AdminUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminUserController.php',
+        'App\\Http\\Controllers\\CertificatesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CertificatesController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\MediaMtxAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/MediaMtxAuthController.php',
@@ -3590,6 +3591,7 @@ class ComposerStaticInit0c7e78bbe938dbfeac9aa28c4e11f2ab
         'Laravel\\Fortify\\Http\\Responses\\TwoFactorEnabledResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Responses/TwoFactorEnabledResponse.php',
         'Laravel\\Fortify\\Http\\Responses\\TwoFactorLoginResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Responses/TwoFactorLoginResponse.php',
         'Laravel\\Fortify\\Http\\Responses\\VerifyEmailResponse' => __DIR__ . '/..' . '/laravel/fortify/src/Http/Responses/VerifyEmailResponse.php',
+        'Laravel\\Fortify\\InteractsWithTwoFactorState' => __DIR__ . '/..' . '/laravel/fortify/src/InteractsWithTwoFactorState.php',
         'Laravel\\Fortify\\LoginRateLimiter' => __DIR__ . '/..' . '/laravel/fortify/src/LoginRateLimiter.php',
         'Laravel\\Fortify\\RecoveryCode' => __DIR__ . '/..' . '/laravel/fortify/src/RecoveryCode.php',
         'Laravel\\Fortify\\RoutePath' => __DIR__ . '/..' . '/laravel/fortify/src/RoutePath.php',
@@ -7406,9 +7408,9 @@ class ComposerStaticInit0c7e78bbe938dbfeac9aa28c4e11f2ab
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0c7e78bbe938dbfeac9aa28c4e11f2ab::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0c7e78bbe938dbfeac9aa28c4e11f2ab::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit0c7e78bbe938dbfeac9aa28c4e11f2ab::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit52ec60bcdc9e191c22764173e569fed8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit52ec60bcdc9e191c22764173e569fed8::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit52ec60bcdc9e191c22764173e569fed8::$classMap;
 
         }, null, ClassLoader::class);
     }

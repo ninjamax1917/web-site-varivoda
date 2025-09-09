@@ -11,18 +11,20 @@
             <div class="text-gray-900 dark:text-inherit flex flex-col justify-start h-full">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">О компании</h2>
                 <p class="text-base md:text-lg leading-relaxed mb-4 text-gray-900/80 dark:text-gray-300">
-    Мы проектируем, монтируем и сопровождаем инженерные системы: от
-    объектов производственного назначения до частных домов. Работаем «под ключ»,
-    соблюдаем сроки, нормы и правила, стандарты безопасности.
-    <!-- Для десктопа -->
-    <span class="hidden lg:block mt-5">
-        Выбирайте нужную услугу, чтобы посмотреть примеры наших работ — перейдите по клику на кубе справа.
-    </span>
-    <!-- Для мобильных и планшетов -->
-    <span class="inline lg:hidden">
-        Выбирайте нужную услугу, чтобы посмотреть примеры наших работ — перейдите по клику на кубе снизу.
-    </span>
-</p>
+                    Мы проектируем, монтируем и сопровождаем инженерные системы: от
+                    объектов производственного назначения до частных домов. Работаем «под ключ»,
+                    соблюдаем сроки, нормы и правила, стандарты безопасности.
+                    <!-- Для десктопа -->
+                    <span class="hidden lg:block mt-5">
+                        Выбирайте нужную услугу, чтобы посмотреть примеры наших работ — перейдите по клику на кубе
+                        справа.
+                    </span>
+                    <!-- Для мобильных и планшетов -->
+                    <span class="inline lg:hidden">
+                        Выбирайте нужную услугу, чтобы посмотреть примеры наших работ — перейдите по клику на кубе
+                        снизу.
+                    </span>
+                </p>
                 <ul class="list-disc list-inside text-gray-900/80 dark:text-gray-300 space-y-1">
                     <li>Проектирование и обследование объектов</li>
                     <li>Монтаж, пусконаладка и интеграция</li>
@@ -60,7 +62,22 @@
                 </div>
                 <!-- Подсказка ниже куба -->
                 <div class="cube-drag-hint select-none text-gray-800 dark:text-gray-300 mt-23 sm:mt-23 md:mt-23">
-                    <span class="text-xs sm:text-sm text-gray-800 dark:text-gray-300">Поверните куб</span>
+                    <!-- Десктоп: подсказки в столбец -->
+                    <span class="hint-desktop flex flex-col items-start gap-1">
+                        <span class="hint-line flex items-center gap-1">
+                            <span class="kbd">ЛКМ</span>
+                            <span class="text-xs sm:text-sm text-gray-800 dark:text-gray-300">Выберите услугу</span>
+                        </span>
+                        <span class="hint-line flex items-center gap-1">
+                            <span class="kbd">ПКМ</span>
+                            <span class="text-xs sm:text-sm text-gray-800 dark:text-gray-300">Вращайте куб</span>
+                        </span>
+                        <span class="mt-2 text-[11px] sm:text-xs text-gray-500 dark:text-gray-400 max-w-[46ch]">
+                            Если отображение куба некорректно, попробуйте временно отключить аппаратное ускорение в
+                            настройках браузера.
+                        </span>
+                    </span>
+                    <span class="hint-touch text-xs sm:text-sm text-gray-800 dark:text-gray-300">Свайпните</span>
                     <span
                         class="hint-360 flex items-center justify-center rounded-full border-1 border-[#51A2FF] text-base sm:text-lg md:text-xl font-bold bg-white dark:bg-[#232325] shadow"
                         aria-hidden="true">

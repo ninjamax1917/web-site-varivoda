@@ -35,3 +35,54 @@
     z-index: 10 !important;
     position: absolute;
 }
+
+/* Секция 3: даём внутренний отступ снизу и рисуем пагинацию внутри контейнера */
+.cert-swiper { overflow: hidden; padding-bottom: 84px; }
+/* Усиленная специфичность и !important, чтобы перебить дефолт Swiper */
+.cert-swiper .swiper-pagination,
+.cert-swiper.swiper-horizontal > .swiper-pagination-bullets,
+.cert-swiper .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 4px !important; /* ещё ниже внутри большего паддинга */
+    left: 0; right: 0; width: 100%;
+    display: flex !important; justify-content: center; align-items: center;
+}
+@media (min-width: 640px) { /* планшеты */
+    .cert-swiper { padding-bottom: 96px; }
+    .cert-swiper .swiper-pagination,
+    .cert-swiper.swiper-horizontal > .swiper-pagination-bullets,
+    .cert-swiper .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 6px !important;
+    }
+}
+@media (min-width: 1024px) { /* десктопы */
+    .cert-swiper { padding-bottom: 112px; }
+    .cert-swiper .swiper-pagination,
+    .cert-swiper.swiper-horizontal > .swiper-pagination-bullets,
+    .cert-swiper .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 8px !important;
+    }
+}
+
+/* Делаем кружочки видимыми и контрастными */
+.cert-swiper .swiper-pagination-bullet {
+    width: 10px; height: 10px;
+    background: #51A2FF; opacity: 1; border: none; margin: 0 5px !important;
+}
+.cert-swiper .swiper-pagination-bullet-active {
+    background: #1E40AF; opacity: 1;
+}
+
+/* Чуть более «жирные» стрелки навигации */
+.cert-swiper { --swiper-navigation-size: 42px; }
+.cert-swiper .swiper-button-next::after,
+.cert-swiper .swiper-button-prev::after {
+    font-size: 42px; /* ~1.5x больше */
+    font-weight: 900; /* толще */
+    -webkit-text-stroke: 1px currentColor; /* визуально утолщаем */
+}
+/* Альтернативно — добавить лёгкую тень для лучшей читаемости на светлых картинках */
+.cert-swiper .swiper-button-next,
+.cert-swiper .swiper-button-prev {
+    width: 52px; height: 52px; /* увеличим зону клика */
+    text-shadow: 0 0 2px rgba(0,0,0,.35);
+}

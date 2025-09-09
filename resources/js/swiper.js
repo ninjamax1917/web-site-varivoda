@@ -2,8 +2,23 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const swipers = document.querySelectorAll('.swiper');
-    swipers.forEach((el) => {
+    const configs = {
+        certificates: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            breakpoints: {
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 },
+            },
+            loop: false,
+        },
+    };
+
+    document.querySelectorAll('.swiper').forEach((el) => {
+        const key = el.getAttribute('data-swiper-key');
+        const extra = key && configs[key] ? configs[key] : {};
         const base = {
             loop: true,
             pagination: {
@@ -15,12 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 prevEl: el.querySelector('.swiper-button-prev'),
             },
         };
-        let extra = {};
-        const opts = el.getAttribute('data-swiper-options');
-        if (opts) {
-            try { extra = JSON.parse(opts); } catch (e) { /* ignore */ }
-        }
         // eslint-disable-next-line no-new
-        new Swiper(el, Object.assign({}, base, extra));
+        new Swiper(el, { ...base, ...extra });
     });
 });
