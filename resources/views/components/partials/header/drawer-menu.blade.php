@@ -13,6 +13,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
+            {{-- Подчеркивание --}}
+            <div x-show="subOpen" class="w-full flex justify-center">
+                <span class="block h-0.5 w-1/3 bg-blue-500 rounded transition-all duration-300 -mt-1 -ml-1"></span>
+            </div>
             <div x-show="subOpen" x-transition class="mt-1 space-y-1">
                 @isset($services)
                     @foreach ($services as $service)
