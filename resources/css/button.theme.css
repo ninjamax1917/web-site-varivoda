@@ -11,3 +11,45 @@
 .swap-rotate input:checked ~ .swap-off {
     transform: rotate(0deg);
 }
+
+/* Свечение для ссылок-кнопок услуг */
+.btn-glow {
+    position: relative;
+    overflow: hidden;
+}
+.btn-glow::before {
+    content: "";
+    position: absolute;
+    inset: -2px; /* чуть больше кнопки для мягких краёв */
+    border-radius: inherit;
+        /* светлая тема — ярче и шире подсветки */
+        background: radial-gradient(160px 56px at 20% 120%, rgba(81,163,255,0.35), rgba(81,163,255,0) 62%),
+                                radial-gradient(160px 56px at 80% 120%, rgba(81,163,255,0.32), rgba(81,163,255,0) 62%);
+        filter: blur(12px);
+    opacity: 0;
+    transition: opacity .35s ease, transform .35s ease, filter .35s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+.btn-glow:hover::before,
+.btn-glow:focus-visible::before {
+    opacity: 1;
+    filter: blur(16px);
+}
+/* Внутреннее лёгкое свечение и акцент рамки на hover */
+.btn-glow:hover,
+.btn-glow:focus-visible {
+    /* акцентированная тень для светлой темы */
+    box-shadow: 0 0 0 2px rgba(81,163,255,0.28) inset, 0 10px 28px rgba(81,163,255,0.45);
+}
+
+/* Тёмная тема: чуть мягче радиальные пятна, чтобы не пересвечивать */
+.dark .btn-glow::before {
+    background: radial-gradient(120px 44px at 20% 120%, rgba(81,163,255,0.16), rgba(81,163,255,0) 60%),
+                            radial-gradient(120px 44px at 80% 120%, rgba(81,163,255,0.14), rgba(81,163,255,0) 60%);
+    filter: blur(8px);
+}
+.dark .btn-glow:hover,
+.dark .btn-glow:focus-visible {
+    box-shadow: 0 0 0 1px rgba(81,163,255,0.18) inset, 0 6px 18px rgba(81,163,255,0.28);
+}

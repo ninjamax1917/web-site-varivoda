@@ -11,6 +11,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ServiceCardController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsAdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -23,6 +25,7 @@ Route::get('/fire-alarm', [PagesController::class, 'fireAlarm'])->name('fire-ala
 Route::get('/network', [PagesController::class, 'network'])->name('network');
 Route::get('/project', [PagesController::class, 'project'])->name('project');
 Route::get('/security-alarm', [PagesController::class, 'securityAlarm'])->name('security-alarm');
+Route::get('/domofon', [PagesController::class, 'domofon'])->name('domofon');
 
 Route::get('/services/{service}', [PagesController::class, 'showService'])->name('service.show');
 
@@ -82,6 +85,21 @@ Route::post('/cookies/disable', function () {
 
 // Сертификаты/лицензии — отдаём PDF через контроллер по нормализованному ключу
 use App\Http\Controllers\CertificatesController;
+
 Route::get('/certificates/{key}', [CertificatesController::class, 'show'])
     ->name('certificates.show')
     ->middleware('signed');
+
+// Новости (публичная часть)
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
+// Новости — админка
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/auth/news', [NewsAdminController::class, 'index'])->name('auth.news.index');
+    Route::get('/auth/news/create', [NewsAdminController::class, 'create'])->name('auth.news.create');
+    Route::post('/auth/news', [NewsAdminController::class, 'store'])->name('auth.news.store');
+    Route::get('/auth/news/{news}/edit', [NewsAdminController::class, 'edit'])->name('auth.news.edit');
+    Route::put('/auth/news/{news}', [NewsAdminController::class, 'update'])->name('auth.news.update');
+    Route::delete('/auth/news/{news}', [NewsAdminController::class, 'destroy'])->name('auth.news.destroy');
+});

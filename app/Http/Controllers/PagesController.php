@@ -38,6 +38,12 @@ class PagesController extends Controller
         return view('pages.project', compact('cards'));
     }
 
+    public function domofon()
+    {
+        $cards = ServiceCard::where('page', 'domofon')->with('images')->orderBy('order')->get();
+        return view('pages.domofon', compact('cards'));
+    }
+
     public function securityAlarm()
     {
         $cards = ServiceCard::where('page', 'security-alarm')->with('images')->orderBy('order')->get();

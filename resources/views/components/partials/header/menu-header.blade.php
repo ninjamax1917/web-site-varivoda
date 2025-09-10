@@ -31,5 +31,8 @@
         <a href="{{ route('cctv-city.index') }}"
             class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-[#A2A2A2] hover:text-blue-800 dark:hover:text-blue-500 transition duration-600">Камеры
             города</a>
+
+        <a href="{{ route('news.index') }}"
+            class="rounded-md px-3 py-2 text-base font-medium text-gray-800 dark:text-[#A2A2A2] hover:text-blue-800 dark:hover:text-blue-500 transition duration-600">Новости</a>
     </div>
 </div>

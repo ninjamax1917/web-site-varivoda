@@ -3,7 +3,7 @@
     <div class="drawer-content flex flex-col">
         <nav x-data="{ open: false }" class="relative bg-gray-100 dark:bg-[#161617] shadow-lg">
             <div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
-                <div class="relative flex h-16 items-center justify-between">
+                <div class="relative flex h-20 items-center justify-between">
                     <!-- Drawer button for mobile -->
                     <div class="flex-none md:hidden text-[#39393A]">
                         <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
@@ -15,7 +15,7 @@
                         </label>
                     </div>
                     <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div class="flex shrink-0 items-center h-16">
+                        <div class="flex shrink-0 items-center h-20">
                             <!-- Логотип -->
                             <x-partials.header.logo />
                         </div>

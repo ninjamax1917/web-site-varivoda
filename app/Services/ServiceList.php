@@ -13,6 +13,7 @@ class ServiceList
             ['name' => 'Противопожарная автоматика', 'slug' => 'fire-alarm', 'icon' => 'fire'],
             ['name' => 'Охранная сигнализация', 'slug' => 'security-alarm', 'icon' => 'shield'],
             ['name' => 'Проектирование', 'slug' => 'project', 'icon' => 'document'],
+            ['name' => 'Домофония | СКУД', 'slug' => 'domofon', 'icon' => 'intercom'],
         ];
     }
 
@@ -25,6 +26,7 @@ class ServiceList
             'network' => 'pages.network',
             'project' => 'pages.project',
             'security-alarm' => 'pages.security_alarm',
+            'domofon' => 'pages.domofon',
         ];
     }
 }

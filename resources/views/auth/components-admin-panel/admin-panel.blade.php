@@ -9,6 +9,11 @@
                             Перейти в админ-панель
                         </a>
                     </li>
+                    <li class="mt-2">
+                        <a href="{{ route('auth.news.index') }}" class="btn btn-sm btn-outline btn-secondary w-fit">
+                            Новости
+                        </a>
+                    </li>
                     {{-- Добавьте здесь другие админ-ссылки при необходимости --}}
                 </ul>
             </div>
