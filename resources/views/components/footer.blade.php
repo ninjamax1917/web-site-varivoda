@@ -5,6 +5,19 @@
         <!-- Текст по центру под иконками -->
         <div class="text-sm text-center">
             © {{ date('Y') }} — Все права защищены. <span class="text-blue-500 font-semibold">Varivoda</span>
+            <div class="mt-1 text-xs text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2">
+                <span class="font-mono text-gray-700 dark:text-gray-300">&lt;/&gt;</span>
+                <span>Разработка:</span>
+                <a href="https://t.me/+79182547147" class="text-blue-600 dark:text-blue-400 hover:underline" rel="noopener"
+                    target="_blank">ninjamax</a>
+            </div>
+        </div>
+
+        <!-- Политика конфиденциальности -->
+        <div class="text-xs text-center text-gray-600 dark:text-gray-400">
+            Используя этот сайт, вы принимаете
+            <a href="{{ route('policy') }}" class="text-blue-600 dark:text-blue-400 hover:underline">Политику
+                конфиденциальности</a>.
         </div>
     </div>
 </footer>

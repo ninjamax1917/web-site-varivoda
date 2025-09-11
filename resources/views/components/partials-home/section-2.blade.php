@@ -64,7 +64,7 @@
             <!-- Правый столбец: кнопки услуг -->
             <div
                 class="flex flex-col items-start justify-start lg:justify-center h-full mt-2 md:mt-4 lg:mt-0 lg:border-l lg:border-slate-300 dark:lg:border-white/10 lg:pl-8 lg:col-span-1">
-                <p class="mb-3 text-md md:text-base font-medium text-gray-900/80 dark:text-gray-200">
+                <p class="mb-3 text-base md:text-lg font-medium text-gray-900/80 dark:text-gray-200">
                     Посмотрите примеры наших работ
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-3 md:gap-4 w-full">

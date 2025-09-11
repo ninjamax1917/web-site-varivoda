@@ -9,16 +9,21 @@
         </div>
         {{-- Разделитель секций с общей шириной контейнера --}}
         <div class="border-t-1 border-gray-300 dark:border-[#232325] w-full mx-auto"></div>
-        {{-- Вторая секция (куб услуг) --}}
+        {{-- Вторая секция (наши компетенции) — сразу после первой --}}
         <x-partials-home.section-2 />
         {{-- Разделитель секций --}}
         <div class="border-t-1 border-gray-300 dark:border-[#232325] w-full mx-auto"></div>
-        {{-- Новости (после секции О компании) --}}
+        {{-- Новости --}}
         <x-partials-home.section-news />
         {{-- Разделитель секций --}}
         <div class="border-t-1 border-gray-300 dark:border-[#232325] w-full mx-auto"></div>
         {{-- Третья секция (Лицензии и сертификаты) --}}
         <x-partials-home.section-3 :certificates="$certificates" />
+        {{-- Разделитель секций --}}
+        <div class="border-t-1 border-gray-300 dark:border-[#232325] w-full mx-auto"></div>
+        {{-- Карта и информация о компании --}}
+        <x-partials-home.section-map />
+
 
         <!-- Кнопка "Вверх" -->
         <button x-show="showBackTop" x-transition.opacity.scale @click="window.scrollTo({ top: 0, behavior: 'smooth' })"

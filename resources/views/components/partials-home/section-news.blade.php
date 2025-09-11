@@ -5,13 +5,13 @@
         ->whereNotNull('published_at')
         ->orderByDesc('published_at')
         ->limit(3)
-        ->get(['id', 'title', 'slug', 'excerpt', 'cover_image', 'published_at']);
+        ->get(['id', 'title', 'slug', 'excerpt', 'cover_image', 'published_at', 'category']);
 @endphp
 
 <section class="w-full py-12 md:py-16">
     <div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 border-l-4 border-[#51A3FF] pl-3">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 border-l-4 border-[#51A3FF] pl-3">
                 Новости</h2>
             <a href="{{ route('news.index') }}"
                 class="inline-flex items-center gap-1 text-sm font-semibold text-[#1E40AF] dark:text-[#DCEBFF] hover:underline">
@@ -48,8 +48,23 @@
                                         {{ $n->published_at->format('d.m.Y') }}
                                     @endif
                                 </span>
-                                <span
-                                    class="inline-block text-[10px] px-2 py-0.5 rounded bg-[#51A3FF]/70 text-gray-900 font-semibold opacity-80 group-hover:opacity-100">Новость</span>
+                                <div class="flex items-center gap-1">
+                                    @php
+                                        $tags = [];
+                                        if (!empty($n->category)) {
+                                            $tags = array_filter(array_map('trim', explode(',', $n->category)));
+                                        }
+                                    @endphp
+                                    @if (count($tags))
+                                        @foreach ($tags as $tag)
+                                            <span
+                                                class="inline-block text-[10px] px-2 py-0.5 rounded bg-[#51A3FF]/70 text-gray-900 font-semibold opacity-80 group-hover:opacity-100">{{ $tag }}</span>
+                                        @endforeach
+                                    @else
+                                        <span
+                                            class="inline-block text-[10px] px-2 py-0.5 rounded bg-[#51A3FF]/70 text-gray-900 font-semibold opacity-80 group-hover:opacity-100">Новости</span>
+                                    @endif
+                                </div>
                             </div>
                             <h3
                                 class="text-base font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 group-hover:underline">
