@@ -6,12 +6,12 @@
     <section class="w-full py-12 md:py-16">
         <div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
             <h2
-                class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100 border-l-4 border-[#51A3FF] pl-3">
+                class="max-w-md mx-auto text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100 border-l-4 border-[#51A3FF] pl-3">
                 Вход
             </h2>
 
             <div
-                class="mx-auto w-full max-w-md rounded-2xl ring-1 ring-gray-300 dark:ring-white/10 bg-white dark:bg-[#232325] shadow-sm p-6 sm:p-8">
+                class="mx-auto w-full max-w-md rounded-2xl ring-1 ring-gray-300 dark:ring-white/10 bg-white dark:bg-[#232325] shadow-sm p-6 sm:p-8 mt-10">
                 <form action="{{ route('login') }}" method="POST" class="space-y-5">
                     @csrf
                     <div>

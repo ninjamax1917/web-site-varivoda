@@ -5,8 +5,7 @@
             <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar"
                 class="block object-cover object-center w-full h-full" />
         @else
-            <img src="{{ asset('images/icons/default_avatar.jpg') }}" alt="Default avatar"
-                class="block object-cover object-center w-full h-full" />
+            @include('components.icons.default_avatar_svg', ['class' => 'w-full h-full mx-auto mt-1 text-gray-700 dark:text-gray-400'])
         @endif
     </div>
 </div>

@@ -11,17 +11,17 @@
             </svg>
         </label>
         <ul tabindex="0"
-            class="dropdown-content menu bg-gray-100 dark:bg-gray-800 rounded-box z-1 w-52 p-1 shadow-sm mt-2 border border-gray-400 dark:border-gray-700">
+            class="dropdown-content menu bg-gray-100 dark:bg-gray-800 rounded-box z-1 w-36 p-1 shadow-sm mt-2 border border-gray-400 dark:border-gray-700">
             <li>
-                <label for="avatar-upload" class="cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700">
+                <label for="avatar-upload" class="cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 px-4 py-2">
                     Загрузить</label>
             </li>
             @if (auth()->user()->avatar)
-                <hr class="border-gray-300 dark:border-gray-700">
+                <hr class="border-gray-300 dark:border-gray-700 m-1">
                 <li>
                     <a href="#"
                         onclick="event.preventDefault(); document.getElementById('avatar-delete-form').submit();"
-                        class="block w-full text-left px-3 py-1 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">Удалить
+                        class="block w-full text-left px-4 py-2 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">Удалить
                     </a>
                     <form id="avatar-delete-form" action="{{ route('profile.avatar.delete') }}" method="POST"
                         class="hidden">

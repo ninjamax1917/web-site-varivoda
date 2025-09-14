@@ -377,8 +377,8 @@ class ComposerStaticInit52ec60bcdc9e191c22764173e569fed8
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -430,8 +430,8 @@ class ComposerStaticInit52ec60bcdc9e191c22764173e569fed8
         ),
         'League\\Uri\\' => 
         array (
-            0 => __DIR__ . '/..' . '/league/uri',
-            1 => __DIR__ . '/..' . '/league/uri-interfaces',
+            0 => __DIR__ . '/..' . '/league/uri-interfaces',
+            1 => __DIR__ . '/..' . '/league/uri',
         ),
         'League\\MimeTypeDetection\\' => 
         array (
@@ -653,12 +653,16 @@ class ComposerStaticInit52ec60bcdc9e191c22764173e569fed8
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\MediaMtxAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/MediaMtxAuthController.php',
+        'App\\Http\\Controllers\\NewsAdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsAdminController.php',
+        'App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\ServiceCardController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServiceCardController.php',
         'App\\Http\\Controllers\\StreamingController' => __DIR__ . '/../..' . '/app/Http/Controllers/StreamingController.php',
         'App\\Http\\Middleware\\AdminMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminMiddleware.php',
         'App\\Models\\Camera' => __DIR__ . '/../..' . '/app/Models/Camera.php',
+        'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
+        'App\\Models\\NewsImage' => __DIR__ . '/../..' . '/app/Models/NewsImage.php',
         'App\\Models\\ServiceCard' => __DIR__ . '/../..' . '/app/Models/ServiceCard.php',
         'App\\Models\\ServiceCardImage' => __DIR__ . '/../..' . '/app/Models/ServiceCardImage.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -666,6 +670,7 @@ class ComposerStaticInit52ec60bcdc9e191c22764173e569fed8
         'App\\Observers\\CameraObserver' => __DIR__ . '/../..' . '/app/Observers/CameraObserver.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\FortifyServiceProvider' => __DIR__ . '/../..' . '/app/Providers/FortifyServiceProvider.php',
+        'App\\Services\\CertificatesRepository' => __DIR__ . '/../..' . '/app/Services/CertificatesRepository.php',
         'App\\Services\\ServiceList' => __DIR__ . '/../..' . '/app/Services/ServiceList.php',
         'ArchTech\\Enums\\Comparable' => __DIR__ . '/..' . '/archtechx/enums/src/Comparable.php',
         'ArchTech\\Enums\\Exceptions\\UndefinedCaseError' => __DIR__ . '/..' . '/archtechx/enums/src/Exceptions/UndefinedCaseError.php',

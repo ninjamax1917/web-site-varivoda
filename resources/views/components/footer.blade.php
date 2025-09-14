@@ -4,11 +4,11 @@
         @include('components.partials.footer.social-links')
         <!-- Текст по центру под иконками -->
         <div class="text-sm text-center">
-            © {{ date('Y') }} — Все права защищены. <span class="text-blue-500 font-semibold">Varivoda</span>
-            <div class="mt-1 text-xs text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2">
+            © {{ date('Y') }} — Все права защищены. <span class="font-fira-mono font-poppins text-blue-500 font-semibold">VARIVODA</span>
+            <div class="mt-1 text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-2">
                 <span class="font-mono text-gray-700 dark:text-gray-300">&lt;/&gt;</span>
                 <span>Разработка:</span>
-                <a href="https://t.me/+79182547147" class="text-blue-600 dark:text-blue-400 hover:underline" rel="noopener"
+                <a href="https://t.me/+79182547147" class="text-blue-600 dark:text-blue-400 hover:text-red-500 transition duration-200" rel="noopener"
                     target="_blank">ninjamax</a>
             </div>
         </div>

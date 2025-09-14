@@ -5,8 +5,7 @@
             <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar"
                 class="block object-cover object-center w-full h-full" />
         @else
-            <img src="{{ asset('images/icons/default_avatar.jpg') }}" alt="Default avatar"
-                class="block object-cover object-center w-full h-full" />
+            @include('auth.components-profile.avatar')
         @endif
 
         <!-- Dropdown с кнопками загрузки/удаления -->

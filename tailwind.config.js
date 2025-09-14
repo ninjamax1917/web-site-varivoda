@@ -6,7 +6,8 @@ module.exports = {
     "./resources/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [require("daisyui"), require('@tailwindcss/aspect-ratio'), require('@tailwindcss/line-clamp')],
 }

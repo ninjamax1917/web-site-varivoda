@@ -11,6 +11,38 @@
 /* Use class-based dark mode in Tailwind v4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Логотип */
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+.font-poppins {
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.word-spacing-lg {
+    word-spacing: 0em;
+}
+@media (max-width: 640px) {
+    .word-spacing-lg {
+        word-spacing: 0em;
+    }
+}
+
+/* Разработчик сайта (footer): */
+@font-face {
+    font-family: 'Fira Mono';
+    src: url('/fonts/FiraMono/FiraMono-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+.font-fira-mono {
+    font-family: 'Fira Mono', monospace;
+}
+
 /* Hide [x-cloak] elements until Alpine initializes to avoid UI flicker */
 [x-cloak] { display: none !important; }
 
@@ -82,3 +114,8 @@ select:-webkit-autofill:focus {
   }
 }
 
+
+/* Маленькая аватарка в хедере (header/auth.blade.php) */
+.mt-avatar {
+    margin-top: 2px;
+}

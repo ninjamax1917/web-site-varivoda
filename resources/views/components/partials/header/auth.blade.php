@@ -11,7 +11,7 @@
 
 {{-- Аватарка аккаунта в header --}}
 @auth
-    <div class="dropdown dropdown-end lg:dropdown-center">
+    <div class="dropdown dropdown-end lg:dropdown-center hidden [@media(min-width:530px)]:flex">
         <div tabindex="0" role="button" class="avatar cursor-pointer">
             <div
                 class="ring-gray-500 w-9 h-9 rounded-full ring-1 overflow-hidden bg-gray-200 dark:bg-gray-700 flex items-center justify-center leading-none">
@@ -19,8 +19,9 @@
                     <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar"
                         class="block object-cover object-center w-full h-full" />
                 @else
-                    <img src="{{ asset('images/icons/default_avatar.jpg') }}" alt="Default avatar"
-                        class="block object-cover object-center w-full h-full" />
+                <div>
+                    @include('components.icons.default_avatar_svg', ['class' => 'w-9 h-9 mx-auto mt-avatar text-gray-700 dark:text-gray-400'])
+                </div>
                 @endif
             </div>
         </div>

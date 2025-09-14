@@ -1,5 +1,17 @@
 <div
     class="select-none fixed top-0 left-0 bg-gray-200 dark:bg-[#232325] dark:text-gray-100 h-screen w-80 p-4 z-50 flex flex-col overflow-y-auto">
+    @auth
+    <a href="{{ route('profile') }}"
+        class="flex items-center justify-center gap-2 text-center rounded-lg px-3 py-2 text-base font-semibold text-blue-700 dark:text-blue-200 bg-white dark:bg-gray-700 shadow hover:bg-blue-50 dark:hover:bg-gray-600 transition duration-400 mt-4 [@media(min-width:530px)]:hidden">
+        @if (auth()->user()->avatar)
+            <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="Avatar"
+                class="w-7 h-7 rounded-full object-cover object-center" />
+        @else
+            @include('components.icons.default_avatar_svg', ['class' => 'w-7 h-7'])
+        @endif
+        Профиль
+    </a>
+@endauth
     <div class="space-y-1 px-2 pt-2 pb-3 flex-1 flex flex-col">
         <a href="{{ route('home') }}"
             class="text-base text-center block rounded-md px-3 py-2 font-medium text-gray-900 dark:text-gray-100 hover:bg-white/5 hover:text-blue-500 transition duration-400">Главная</a>

@@ -1,4 +1,4 @@
-<div class="w-full pt-10 mb-10 md:pt-15 md:mb-15 lg:pt-40 lg:mb-40">
+<div class="w-full pt-10 mb-10 md:pt-15 md:mb-15 lg:pt-15    lg:mb-15">
     <div
         class="flex flex-wrap lg:flex-nowrap items-baseline gap-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold section-1-flex">
         <span class="shrink-0">Подключи</span>
