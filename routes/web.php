@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ServiceCardController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsAdminController;
+use App\Http\Controllers\ToolsPageController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -103,3 +104,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/auth/news/{news}', [NewsAdminController::class, 'update'])->name('auth.news.update');
     Route::delete('/auth/news/{news}', [NewsAdminController::class, 'destroy'])->name('auth.news.destroy');
 });
+
+//Страница с инструментами
+Route::get('/tools', [ToolsPageController::class, 'index'])->name('tools_page');
