@@ -14,6 +14,7 @@ use App\Http\Controllers\ServiceCardController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsAdminController;
 use App\Http\Controllers\ToolsPageController;
+use App\Http\Controllers\VoltageDropController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -105,5 +106,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/auth/news/{news}', [NewsAdminController::class, 'destroy'])->name('auth.news.destroy');
 });
 
-//Страница с инструментами
-Route::get('/tools', [ToolsPageController::class, 'index'])->name('tools_page');
+// Калькулятор падения напряжения
+Route::view('/calculates', 'calculates.index')->name('calculates.index');
+Route::get('/calculate/voltage-drop', [VoltageDropController::class, 'show'])->name('calc.show');
+Route::post('/calculate/voltage-drop', [VoltageDropController::class, 'calculate'])->name('calc.calculate');

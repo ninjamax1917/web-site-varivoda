@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+
 @section('content')
     <section class="pt-20">
         <div class="flex flex-wrap justify-center gap-16">

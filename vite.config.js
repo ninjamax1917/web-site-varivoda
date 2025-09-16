@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/js/webrtc-client.js',
                 'resources/js/modal-stream.js',
                 'resources/js/view-stats.js',
+                'resources/js/voltage_drop.js',
             ],
             refresh: true,
         }),

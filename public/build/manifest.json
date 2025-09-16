@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-DU5hKzKS.css",
+    "file": "assets/app-wm37ovoT.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "names": [
@@ -30,6 +30,12 @@
     "file": "assets/view-stats-CvLKQ8AJ.js",
     "name": "view-stats",
     "src": "resources/js/view-stats.js",
+    "isEntry": true
+  },
+  "resources/js/voltage_drop.js": {
+    "file": "assets/voltage_drop-N60e1BUL.js",
+    "name": "voltage_drop",
+    "src": "resources/js/voltage_drop.js",
     "isEntry": true
   },
   "resources/js/webrtc-client.js": {

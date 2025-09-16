@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="text-center text-2xl font-semibold text-gray-900 dark:text-gray-200 lg py-15">
-        <p>Камеры нашего города</p>
+        <p>Камеры города Приморско-Ахтарск</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         @foreach ($cameras as $camera)
